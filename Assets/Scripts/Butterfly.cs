@@ -1,0 +1,49 @@
+using UnityEngine;
+
+public class Butterfly : MonoBehaviour
+{
+    Vector2 maxBounds;
+    Vector2 minBounds;
+    Vector3 targetPos;
+    Vector3 initialPos;
+    [SerializeField] float speed;
+    int flightsLeft = 5;
+    void Start()
+    {
+        minBounds = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        maxBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0.0f));
+        initialPos = transform.position;
+        SetNextTarget();
+    }
+    private void Update()
+    {
+        float movement = speed * Time.deltaTime;
+        Vector3 pathLeft = (targetPos - transform.position);
+        if (movement <= pathLeft.magnitude)
+        {
+            transform.position += pathLeft.normalized * movement;
+        }
+        else
+        {
+            transform.position = targetPos;
+            flightsLeft--;
+            if (flightsLeft > 0)
+            {
+                SetNextTarget();
+            }
+            else if (flightsLeft == 0)
+            {
+                targetPos = initialPos;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+        }
+    }
+    void SetNextTarget()
+    {
+        targetPos = new Vector3(Random.Range(minBounds.x, maxBounds.x), Random.Range(minBounds.y, maxBounds.y), 0.0f);
+    }
+}
