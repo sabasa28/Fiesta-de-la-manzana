@@ -3,13 +3,14 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class QnAController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI questionText;
     [SerializeField] Image questionSprite;
     [SerializeField] TextMeshProUGUI[] optionsText;
     [SerializeField] Image[] optionsSprite;
-    [SerializeField] GameObject[] optionsButtons;
+    [SerializeField] Button[] optionsButtons;
     [SerializeField] Transform questionTextAlonePos;
     [SerializeField] Transform questionTextWithImagePos;
     Question currentQuestion;
@@ -17,9 +18,23 @@ public class QnAController : MonoBehaviour
     [SerializeField] Question[] questionsData;
     [SerializeField] List<int> questionsOrder = new List<int>();
     [SerializeField] int numOfQuestionsAsked;
+    [SerializeField] ColorBlock correctColor;
+    [SerializeField] ColorBlock incorrectColor;
+    [SerializeField] ColorBlock normalColor;
+    [SerializeField] GameObject answersPanel;
+    [SerializeField] GameObject startGameButton;
+    [SerializeField] GameObject playAgainButton;
+    [SerializeField] GameObject returnToMenuButton;
+    int maxPointsPerQuestion = 4;
+    int pointsThisQuestion = 4;
+    int totalPoints = 0;
     bool changingQuestion = false;
-    void Start()
+
+    void GetRandomQuestionsOrder()
     {
+        currentCuestionIndex = 0;
+        pointsThisQuestion = 4;
+        totalPoints = 0;
         questionsOrder.Clear();
         for (int i = 0; i < numOfQuestionsAsked; i++)
         {
@@ -36,16 +51,16 @@ public class QnAController : MonoBehaviour
             questionsOrder[i] = questionsNumbers[questionIndex];
             questionsNumbers.RemoveAt(questionIndex);
         }
-
         currentQuestion = questionsData[questionsOrder[currentCuestionIndex]];
-        SetUIToQuestionData(currentQuestion);
     }
 
     void SetUIToQuestionData(Question question)
     {
-        foreach (GameObject button in optionsButtons)
+        foreach (Button button in optionsButtons)
         {
-            button.SetActive(true);
+            button.gameObject.SetActive(true);
+            button.colors = normalColor;
+            button.interactable = true;
         }
         questionText.text = question.questionText;
         if (question.questionImage)
@@ -75,11 +90,12 @@ public class QnAController : MonoBehaviour
             }
             else
             {
-                optionsButtons[i].SetActive(false);
+                optionsButtons[i].gameObject.SetActive(false);
                 optionsText[i].text = "";
                 optionsSprite[i].gameObject.SetActive(false);
             }
         }
+        pointsThisQuestion = 4;
     }
 
     public void SelectOptionA()
@@ -106,13 +122,15 @@ public class QnAController : MonoBehaviour
         }
         if (currentQuestion.correctOption == (Option)optionPresssed)
         {
-            Debug.Log("CORRECTOOOO");
+            optionsButtons[optionPresssed].colors = correctColor;
+            totalPoints += pointsThisQuestion;
             StartCoroutine(WaitAndChangeQuestion());
         }
         else
         {
-            Debug.Log("MAAAAAAAAAL");
-            StartCoroutine(WaitAndChangeQuestion());
+            optionsButtons[optionPresssed].colors = incorrectColor;
+            optionsButtons[optionPresssed].interactable = false;
+            pointsThisQuestion--;
         }
     }
 
@@ -124,9 +142,41 @@ public class QnAController : MonoBehaviour
         currentCuestionIndex++;
         if (currentCuestionIndex >= questionsOrder.Count)
         {
+            EndGame();
             yield break;
         }
         currentQuestion = questionsData[questionsOrder[currentCuestionIndex]];
         SetUIToQuestionData(currentQuestion);
+    }
+
+    public void StartGame()
+    {
+        answersPanel.SetActive(true);
+        returnToMenuButton.SetActive(false);
+        playAgainButton.SetActive(false);
+        startGameButton.SetActive(false);
+        GetRandomQuestionsOrder();
+        SetUIToQuestionData(currentQuestion);
+    }
+
+    void EndGame()
+    {
+        answersPanel.SetActive(false);
+        returnToMenuButton.SetActive(true);
+        playAgainButton.SetActive(true);
+        questionText.text = "Felicitaciones! Obtuviste " + totalPoints + " puntos.";
+        if (totalPoints < maxPointsPerQuestion * questionsOrder.Count)
+        {
+            questionText.text += " Volve a jugar para mejorar tu puntaje, pero cuidado, las preguntas pueden cambiar!";
+        }
+        else
+        { 
+            questionText.text += " Puntaje perfecto!";
+        }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

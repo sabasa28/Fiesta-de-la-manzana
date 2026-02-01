@@ -22,6 +22,4 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: 3018
     sprite: {fileID: 0}
-  - text: "Un banco de germoplasma de pom\xE1ceas"
-    sprite: {fileID: 0}
   correctOption: 1

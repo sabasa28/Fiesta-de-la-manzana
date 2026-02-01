@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b297bf078d647a34ebc205b8a05289da, type: 3}
   m_Name: Question9
   m_EditorClassIdentifier: 
-  questionText: "Al Instituto Nacional de Tecnolog\xEDa Agropecuaria \u2013 INTA
-    lo encontr\xE1s"
+  questionText: "\xBFDonde pod\xE9s encontrar al Instituto Nacional de Tecnolog\xEDa
+    Agropecuaria \u2013 INTA?"
   questionImage: {fileID: 0}
   options:
   - text: "S\xF3lo en las provincias de R\xEDo Negro y Neuqu\xE9n"
