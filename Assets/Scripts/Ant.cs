@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ant : MonoBehaviour
+public class Ant : MonoBehaviour, IBicho
 {
     public Transform target;
     public Transform midPoint;
@@ -56,5 +56,32 @@ public class Ant : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ScareAway()
+    {
+        if (!going)
+        {
+            return;
+        }
+        going = false;
+        speed *= 3;
+        if (passedMidpoint)
+        {
+            passedMidpoint = false;
+            targetPos = midPoint.position;
+        }
+        else
+        {
+            passedMidpoint = true;
+            targetPos = initialPos;
+        }
+    }
+
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    {
+        int randomLeaf = Random.Range(0, leafTarget.Length);
+        midPoint = leafMidpoint[randomLeaf];
+        target = leafTarget[randomLeaf];
     }
 }

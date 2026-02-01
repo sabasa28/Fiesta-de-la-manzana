@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Fly : MonoBehaviour
+public class Fly : MonoBehaviour, IBicho
 {
     public Transform target;
     Vector3 targetPos;
@@ -74,8 +74,27 @@ public class Fly : MonoBehaviour
             transform.position = targetPos;
             targetPos = initialPos;
             applePiece.SetActive(true);
+            turning = false;
+            transform.up = (targetPos - transform.position).normalized;
             going = false;
             speed *= 3;
         }
+    }
+    public void ScareAway()
+    {
+        if (!going)
+        {
+            return;
+        }
+        targetPos = initialPos;
+        turning = false;
+        didFullRotation = true;
+        transform.up = (targetPos - transform.position).normalized;
+        going = false;
+        speed *= 3;
+    }
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    {
+        target = appleTarget;
     }
 }

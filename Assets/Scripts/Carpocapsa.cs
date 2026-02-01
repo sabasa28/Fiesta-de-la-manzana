@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Carpocapsa : MonoBehaviour
+public class Carpocapsa : MonoBehaviour, IBicho
 {
     public Transform target;
     Vector3 targetPos;
@@ -36,5 +36,19 @@ public class Carpocapsa : MonoBehaviour
             going = false;
             speed *= 3;
         }
+    }
+    public void ScareAway()
+    {
+        if (!going)
+        {
+            return;
+        }
+        targetPos = initialPos;
+        going = false;
+        speed *= 3;
+    }
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    {
+        target = appleTarget;
     }
 }

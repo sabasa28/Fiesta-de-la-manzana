@@ -31,7 +31,7 @@ public class Mascot : MonoBehaviour
         displayingText = true;
         mascotTextHolder.SetActive(true);
         mascotText.text = conveyourBeltMinigameIntroText;
-        timer = 0.0f;
+        timer = -4.0f;
     }
 
     public void SayConveyourBeltGoodAppleDiscardedText()

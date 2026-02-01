@@ -1,6 +1,7 @@
+using System.Net;
 using UnityEngine;
 
-public class Bee : MonoBehaviour
+public class Bee : MonoBehaviour, IBicho
 {
     public Transform target;
     Vector3 targetPos;
@@ -39,5 +40,20 @@ public class Bee : MonoBehaviour
             going = false;
             speed *= 3;
         }
+    }
+    public void ScareAway()
+    {
+        if (!going)
+        {
+            return;
+        }
+        targetPos = initialPos;
+        going = false;
+        speed *= 3;
+    }
+
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    {
+        target = flowerTarget;
     }
 }

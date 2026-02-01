@@ -1,6 +1,7 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class Butterfly : MonoBehaviour
+public class Butterfly : MonoBehaviour, IBicho
 {
     Vector2 maxBounds;
     Vector2 minBounds;
@@ -46,4 +47,12 @@ public class Butterfly : MonoBehaviour
     {
         targetPos = new Vector3(Random.Range(minBounds.x, maxBounds.x), Random.Range(minBounds.y, maxBounds.y), 0.0f);
     }
+    public void ScareAway()
+    {
+        targetPos = initialPos;
+        flightsLeft = 0;
+        speed *= 3;
+    }
+
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget){}
 }

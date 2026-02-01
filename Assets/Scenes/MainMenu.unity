@@ -829,7 +829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 187, y: 374}
+  m_AnchoredPosition: {x: 321, y: 356}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1073174363
@@ -885,6 +885,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1073174366}
+  conveyourBeltMinigameIntroText: 
+  conveyourBeltWrongApplePassedText: 
+  conveyourBeltGoodAppleDiscardedText: 
+  conveyourBeltLoseText: 
+  mascotText: {fileID: 0}
+  mascotTextHolder: {fileID: 0}
+  timeDisplayingText: 0
 --- !u!95 &1073174366
 Animator:
   serializedVersion: 7
@@ -927,7 +934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7107601786341950868, guid: 8e1f78c80e11a744db60b7dc07a1c3da, type: 3}
+  m_Sprite: {fileID: -2896558764384660861, guid: fa00ed8111d623a4fbb86efd73e490b0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1724,7 +1731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Salva las manzanas
+  m_text: "Salv\xE1 las Manzanas"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1860,7 +1867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Protege la Planta
+  m_text: "Proteg\xE9 la Planta"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1996,8 +2003,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Te doy la bienvenida!\nSoy Nicolas Fernandez, la abeja.\nEleg\xED uno
-    de los tres juegos y divertite!\n"
+  m_text: "Te doy la bienvenida!\nSoy Ana, la abeja.\nEleg\xED uno de los tres juegos
+    y divertite!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2030,7 +2037,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 5
   m_fontSizeMax: 36
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
