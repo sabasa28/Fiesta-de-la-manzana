@@ -58,4 +58,9 @@ public class Mascot : MonoBehaviour
         mascotText.text = conveyourBeltLoseText;
         timer = 0.0f;
     }
+
+    public void ShutUp()
+    { 
+        mascotTextHolder.SetActive(false);
+    }
 }

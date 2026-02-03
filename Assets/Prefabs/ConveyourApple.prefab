@@ -279,7 +279,7 @@ MonoBehaviour:
   graphicTarget: {fileID: 3337669283745253502}
   screenPosWhenDragged: {x: 0, y: 0}
   rotationSpeedWhenThrown: 60
-  oneOutOfIsBadApple: 3
+  oneOutOfIsBadApple: 2
   badApplePosibleSprites:
   - {fileID: -2584860638730468920, guid: 9720ed6c0b804c943bccf93930eae056, type: 3}
   - {fileID: -8450813098837797213, guid: 6c25baf3bbc463a4b9ad2d067923cfb3, type: 3}

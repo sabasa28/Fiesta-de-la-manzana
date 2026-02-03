@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class BichosSpawner : MonoBehaviour
@@ -21,20 +23,46 @@ public class BichosSpawner : MonoBehaviour
     [SerializeField] Transform flowerTrans;
     [SerializeField] Transform[] leafTrans;
     [SerializeField] Transform[] leafMidpointsTrans;
-
-
+    [SerializeField] Transform timerRepresentation;
+    float fullGameTimer = 0.0f;
+    [SerializeField] float gameTime;
+    bool gameStarted = false;
+    [SerializeField] GameObject mascot;
+    [SerializeField] Transform mascotEndscreenPos;
+    [SerializeField] GameObject startEndPanel;
+    [SerializeField] GameObject startSpecificUI;
+    [SerializeField] GameObject endSpecificUI;
+    [SerializeField] string endscreenMascotDialogue;
+    [SerializeField] TextMeshProUGUI mascotText;
+    Vector3 mascotInitialPos;
     void Start()
     {
+        mascotInitialPos = mascot.transform.position;
         nextSpawnTime = firstSpawnTime;
         sideAx = topLeftCorner.position.x;
         sideBx = bottomRightCorner.position.x;
         topsideY = topLeftCorner.position.y;
         bottomSideY = bottomRightCorner.position.y;
+        SetAndEnableStartScreen();
     }
 
     private void Update()
     {
+        if (!gameStarted)
+        {
+            return;
+        }
         timer += Time.deltaTime;
+        if (fullGameTimer < gameTime)
+        {
+            fullGameTimer += Time.deltaTime;
+            timerRepresentation.localScale = new Vector3(fullGameTimer / gameTime, 1.0f, 1.0f);
+        }
+        else
+        {
+            timerRepresentation.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            EndGame();
+        }
         if (timer >= nextSpawnTime)
         {
             timer = 0.0f;
@@ -74,5 +102,40 @@ public class BichosSpawner : MonoBehaviour
                 break;
         }
         return spawnPos;
+    }
+
+    void SetAndEnableStartScreen()
+    { 
+        startSpecificUI.SetActive(true);
+        endSpecificUI.SetActive(false);
+        startEndPanel.SetActive(true);
+        mascot.transform.position = mascotEndscreenPos.position;
+    }
+
+    void EndGame()
+    {
+        mascotText.text = endscreenMascotDialogue;
+        startEndPanel.SetActive(true);
+        endSpecificUI.SetActive(true);
+        startSpecificUI.SetActive(false);
+        gameStarted = false;
+        mascot.transform.position = mascotEndscreenPos.position;
+    }
+
+    public void StartGame()
+    {
+        startEndPanel.SetActive(false);
+        gameStarted = true;
+        mascot.transform.position = mascotInitialPos;
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("BichosAttack");
+    }
+
+    public void BackToMenu()
+    { 
+        SceneManager.LoadScene("MainMenu");
     }
 }
