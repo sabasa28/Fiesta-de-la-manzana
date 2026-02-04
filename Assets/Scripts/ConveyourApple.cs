@@ -26,8 +26,8 @@ public class ConveyourApple : MonoBehaviour
             graphicTarget.GetComponent<SpriteRenderer>().sprite = badApplePosibleSprites[Random.Range(0, badApplePosibleSprites.Length)]; 
         }
         maxDistanceToThrow = Vector3.Distance(Camera.main.WorldToScreenPoint(graphicTarget.GetComponent<SpriteRenderer>().bounds.min), Camera.main.WorldToScreenPoint(graphicTarget.GetComponent<SpriteRenderer>().bounds.center));
-        Debug.Log(graphicTarget.GetComponent<SpriteRenderer>().bounds.min.x); //HACER BIEN ESTO
-        Debug.Log(graphicTarget.GetComponent<SpriteRenderer>().bounds.max.x);
+         //HACER BIEN ESTO
+        
     }
     void Update()
     {

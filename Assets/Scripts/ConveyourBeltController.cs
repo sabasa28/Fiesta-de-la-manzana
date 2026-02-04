@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,8 +41,35 @@ public class ConveyourBeltController : MonoBehaviour
     [SerializeField] string conveyourBeltMinigameIntroText;
     [SerializeField] string conveyourBeltLoseText;
     Vector3 mascotInitialPos;
+    [SerializeField] PlayerInput playerInput;
+    [SerializeField] InputAction touchPosAction;
+    [SerializeField] InputAction touchPressedAction;
+    Touch touchDebug;
+
+    private void Awake()
+    {
+        touchPressedAction = playerInput.actions["TouchPressed"];
+        
+        Debug.Log(touchPressedAction.name);
+    }
+    private void OnEnable()
+    {
+        touchPressedAction.performed += TouchPressedEvent;
+    }
+    private void OnDisable()
+    {
+        touchPressedAction.performed -= TouchPressedEvent;
+    }
+    void TouchPressedEvent(InputAction.CallbackContext context)
+    {
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAH");
+        float value = context.ReadValue<float>();
+        Debug.Log(value);
+    }
     private void Start()
     {
+        touchPosAction = playerInput.actions["TouchPosition"];
+        Debug.Log(touchPosAction);
         mascotInitialPos = mascot.transform.position;
         initialSpeed = speed;
         minYToSpawn = minYToSpawnTrans.position.y;
@@ -52,6 +80,9 @@ public class ConveyourBeltController : MonoBehaviour
 
     void Update()
     {
+        Vector2 test = touchPosAction.ReadValue<Vector2>();
+        Debug.Log(test);
+        
         if (!gameStarted)
         {
             return;
@@ -211,5 +242,10 @@ public class ConveyourBeltController : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    Touch ReturnTouchData()
+    {
+        return touchPosAction.ReadValue<Touch>();
     }
 }
