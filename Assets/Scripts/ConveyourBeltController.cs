@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -43,13 +44,33 @@ public class ConveyourBeltController : MonoBehaviour
     Vector3 mascotInitialPos;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] InputAction touchPosAction;
+    [SerializeField] InputAction touchPosAction1;
+    [SerializeField] InputAction touchPosAction2;
+    [SerializeField] InputAction touchPosAction3;
+    [SerializeField] InputAction touchPosAction4;
+    [SerializeField] InputAction touchPosAction5;
+    [SerializeField] InputAction touchPosAction6;
+    [SerializeField] InputAction touchPosAction7;
+    [SerializeField] InputAction touchPosAction8;
+    [SerializeField] InputAction touchPosAction9;
     [SerializeField] InputAction touchPressedAction;
     Touch touchDebug;
 
     private void Awake()
     {
         touchPressedAction = playerInput.actions["TouchPressed"];
-        
+        touchPosAction = playerInput.actions["TouchPosition"];
+        touchPosAction1 = playerInput.actions["TouchPosition1"];
+        touchPosAction2 = playerInput.actions["TouchPosition2"];
+        touchPosAction3 = playerInput.actions["TouchPosition3"];
+        touchPosAction4 = playerInput.actions["TouchPosition4"];
+        touchPosAction5 = playerInput.actions["TouchPosition5"];
+        touchPosAction6 = playerInput.actions["TouchPosition6"];
+        touchPosAction7 = playerInput.actions["TouchPosition7"];
+        touchPosAction8 = playerInput.actions["TouchPosition8"];
+        touchPosAction9 = playerInput.actions["TouchPosition9"];
+
+
         Debug.Log(touchPressedAction.name);
     }
     private void OnEnable()
@@ -68,8 +89,6 @@ public class ConveyourBeltController : MonoBehaviour
     }
     private void Start()
     {
-        touchPosAction = playerInput.actions["TouchPosition"];
-        Debug.Log(touchPosAction);
         mascotInitialPos = mascot.transform.position;
         initialSpeed = speed;
         minYToSpawn = minYToSpawnTrans.position.y;
@@ -80,8 +99,6 @@ public class ConveyourBeltController : MonoBehaviour
 
     void Update()
     {
-        Vector2 test = touchPosAction.ReadValue<Vector2>();
-        Debug.Log(test);
         
         if (!gameStarted)
         {
@@ -244,8 +261,48 @@ public class ConveyourBeltController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    Touch ReturnTouchData()
+    public Vector2 ReturnTouchPos(int touchId) //not my cleanest, not my dirtiest
     {
-        return touchPosAction.ReadValue<Touch>();
+        if (touchPosAction.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction1.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction1.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction2.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction2.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction3.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction3.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction4.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction4.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction5.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction5.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction6.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction6.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction7.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction7.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction8.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction8.ReadValue<TouchState>().position;
+        }
+        if (touchPosAction9.ReadValue<TouchState>().touchId == touchId)
+        {
+            return touchPosAction9.ReadValue<TouchState>().position;
+        }
+        return Vector2.zero;
     }
 }

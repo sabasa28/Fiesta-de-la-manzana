@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class ConveyourApple : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class ConveyourApple : MonoBehaviour
     [SerializeField] Sprite[] badApplePosibleSprites;
     public bool isBadApple;
     public ConveyourBeltController conveyourBeltController;
+    int dragId;
     private void Start()
     {
         isBadApple = Random.Range(0, oneOutOfIsBadApple) == 0; //not acab??
@@ -42,7 +45,7 @@ public class ConveyourApple : MonoBehaviour
         }
         if (gfxTargetFollowsTouch)
         {
-            graphicTarget.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            graphicTarget.transform.position = Camera.main.ScreenToWorldPoint(conveyourBeltController.ReturnTouchPos(dragId));
             graphicTarget.transform.position = new Vector3(graphicTarget.transform.position.x, graphicTarget.transform.position.y, 0.0f);
             Vector2 GFXScreenPos = Camera.main.WorldToScreenPoint(graphicTarget.transform.position);
             if (Vector2.Distance(screenPosWhenDragged, GFXScreenPos) > maxDistanceToThrow)
@@ -57,10 +60,12 @@ public class ConveyourApple : MonoBehaviour
         }
     }
 
-    public void DragApple()
+    public void DragApple(BaseEventData pointerEventData)
     {
+        ExtendedPointerEventData castedEventData = (ExtendedPointerEventData)pointerEventData;
+        dragId = castedEventData.touchId;
         gfxTargetFollowsTouch = true;
-        screenPosWhenDragged = Input.mousePosition;
+        screenPosWhenDragged = conveyourBeltController.ReturnTouchPos(dragId);
     }
     public void StopDraggingApple()
     {
@@ -76,5 +81,11 @@ public class ConveyourApple : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         conveyourBeltController.RemoveAppleFromList(this, false);
+    }
+
+    public void Test(BaseEventData pointerEventData)
+    {
+        ExtendedPointerEventData castedEventData = (ExtendedPointerEventData)pointerEventData;
+        dragId = castedEventData.touchId;
     }
 }

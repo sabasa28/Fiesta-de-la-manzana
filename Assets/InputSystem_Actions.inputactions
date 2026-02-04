@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -18,7 +19,88 @@
                     "name": "TouchPosition",
                     "type": "Value",
                     "id": "5349870d-80f0-424c-a949-ad9434ee620a",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition1",
+                    "type": "Value",
+                    "id": "b7808b5d-2e89-4ea9-92df-9f073780b32f",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition2",
+                    "type": "Value",
+                    "id": "b8357a3c-65e3-4131-8956-948e511ca5d4",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition3",
+                    "type": "Value",
+                    "id": "3f2369b6-6e86-4dc0-8c4f-5099cbda345e",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition4",
+                    "type": "Value",
+                    "id": "9ff31ece-e19c-44cc-ba79-142d83847af4",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition5",
+                    "type": "Value",
+                    "id": "21a813ce-4d8a-4c3c-af57-4f85f5522e4b",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition6",
+                    "type": "Value",
+                    "id": "339362e7-04f5-4bf0-8ff1-21c22e9481d1",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition7",
+                    "type": "Value",
+                    "id": "1e5e1b5a-aef9-46de-b5d0-e6e4d548b59d",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition8",
+                    "type": "Value",
+                    "id": "c0d5b44b-15d8-4f69-871d-96021cda9459",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition9",
+                    "type": "Value",
+                    "id": "6de15db7-3675-4c86-ae96-b791c2a6702c",
+                    "expectedControlType": "Touch",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -494,11 +576,110 @@
                 {
                     "name": "",
                     "id": "7c43cc92-175a-475f-ac16-d623ae13363e",
-                    "path": "<Touchscreen>/primaryTouch/position",
+                    "path": "<Touchscreen>/touch0",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Touch",
                     "action": "TouchPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7375b4f8-9725-4a81-a84b-37f3687fe19b",
+                    "path": "<Touchscreen>/touch1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc805997-ab96-44e5-9f81-07626dc972d8",
+                    "path": "<Touchscreen>/touch2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cf031cc-e793-4f14-be96-db3fb83efaf3",
+                    "path": "<Touchscreen>/touch3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a56288e1-4786-41b7-9ada-e533c2929b59",
+                    "path": "<Touchscreen>/touch4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3975f304-3730-4cd6-8c75-4e4c1c9a9588",
+                    "path": "<Touchscreen>/touch5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1318533-f123-463a-8bea-05d076ae5cc3",
+                    "path": "<Touchscreen>/touch6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50240b05-2674-43b4-af5c-5a5d2d451302",
+                    "path": "<Touchscreen>/touch7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9344b2bb-c110-4b61-b408-c02037bd9d5c",
+                    "path": "<Touchscreen>/touch8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1143a280-f314-4b05-99ee-e95dfe4133ed",
+                    "path": "<Touchscreen>/touch9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "TouchPosition9",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
