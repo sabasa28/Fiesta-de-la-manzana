@@ -4,6 +4,14 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
+
+public enum Dificulty
+{ 
+    easy,
+    medium,
+    hard
+}
+
 public class QnAController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI questionText;
@@ -15,42 +23,71 @@ public class QnAController : MonoBehaviour
     [SerializeField] Transform questionTextWithImagePos;
     Question currentQuestion;
     int currentCuestionIndex = 0;
-    [SerializeField] Question[] questionsData;
+    [SerializeField] Question[] easyQuestions;
+    [SerializeField] Question[] mediumQuestions;
+    [SerializeField] Question[] hardQuestions;
+    [SerializeField] List<Question> questionsData = new List<Question>();
+    Dificulty currentDificulty;
     [SerializeField] List<int> questionsOrder = new List<int>();
-    [SerializeField] int numOfQuestionsAsked;
     [SerializeField] ColorBlock correctColor;
     [SerializeField] ColorBlock incorrectColor;
     [SerializeField] ColorBlock normalColor;
     [SerializeField] GameObject answersPanel;
+    [SerializeField] GameObject[] dificultyButtons;
     [SerializeField] GameObject startGameButton;
     [SerializeField] GameObject playAgainButton;
     [SerializeField] GameObject returnToMenuButton;
+    [SerializeField] string instructionsText;
     int maxPointsPerQuestion = 4;
     int pointsThisQuestion = 4;
     int totalPoints = 0;
+    int questionsCorrect = 0;
     bool changingQuestion = false;
 
     void GetRandomQuestionsOrder()
     {
+        Question[] questionsToUse;
+        switch (currentDificulty)
+        {
+            case Dificulty.easy:
+                questionsToUse = easyQuestions;
+                break;
+            case Dificulty.medium:
+                questionsToUse = mediumQuestions;
+                break;
+            case Dificulty.hard:
+            default:
+                questionsToUse = hardQuestions;
+                break;
+        }
+        foreach (Question question in questionsToUse)
+        {
+            questionsData.Add(question);
+        }
         currentCuestionIndex = 0;
         pointsThisQuestion = 4;
         totalPoints = 0;
+        questionsCorrect = 0;
         questionsOrder.Clear();
-        for (int i = 0; i < numOfQuestionsAsked; i++)
+        for (int i = 0; i < questionsData.Count; i++)
         {
-            questionsOrder.Add(-1);
+            questionsOrder.Add(i);
         }
-        List<int> questionsNumbers = new List<int>();
-        for (int i = 0; i < questionsData.Length; i++)
-        {
-            questionsNumbers.Add(i);
-        }
-        for (int i = 0; i < questionsOrder.Count; i++)
-        {
-            int questionIndex = Random.Range(0, questionsNumbers.Count);
-            questionsOrder[i] = questionsNumbers[questionIndex];
-            questionsNumbers.RemoveAt(questionIndex);
-        }
+        //for (int i = 0; i < numOfQuestionsAsked; i++)
+        //{
+        //    questionsOrder.Add(-1);
+        //}
+        //List<int> questionsNumbers = new List<int>();
+        //for (int i = 0; i < questionsData.Count; i++)
+        //{
+        //    questionsNumbers.Add(i);
+        //}
+        //for (int i = 0; i < questionsOrder.Count; i++)
+        //{
+        //    int questionIndex = Random.Range(0, questionsNumbers.Count);
+        //    questionsOrder[i] = questionsNumbers[questionIndex];
+        //    questionsNumbers.RemoveAt(questionIndex);
+        //}
         currentQuestion = questionsData[questionsOrder[currentCuestionIndex]];
     }
 
@@ -123,15 +160,17 @@ public class QnAController : MonoBehaviour
         if (currentQuestion.correctOption == (Option)optionPresssed)
         {
             optionsButtons[optionPresssed].colors = correctColor;
-            totalPoints += pointsThisQuestion;
-            StartCoroutine(WaitAndChangeQuestion());
+            questionsCorrect++;
+            //totalPoints += pointsThisQuestion;
         }
         else
         {
             optionsButtons[optionPresssed].colors = incorrectColor;
             optionsButtons[optionPresssed].interactable = false;
-            pointsThisQuestion--;
+            optionsButtons[(int)currentQuestion.correctOption].colors = correctColor;
+            //pointsThisQuestion--;
         }
+        StartCoroutine(WaitAndChangeQuestion());
     }
 
     IEnumerator WaitAndChangeQuestion()
@@ -149,6 +188,32 @@ public class QnAController : MonoBehaviour
         SetUIToQuestionData(currentQuestion);
     }
 
+    public void SetDificultyEasy()
+    {
+        SetDificulty(Dificulty.easy);
+    }
+
+    public void SetDificultyMedium()
+    {
+        SetDificulty(Dificulty.medium);
+    }
+
+    public void SetDificultyHard()
+    {
+        SetDificulty(Dificulty.hard);
+    }
+
+    void SetDificulty(Dificulty newDificulty)
+    { 
+        currentDificulty = newDificulty;
+        questionText.text = instructionsText;
+        startGameButton.SetActive(true);
+        foreach (GameObject button in dificultyButtons)
+        {
+            button.SetActive(false);
+        }
+    }
+
     public void StartGame()
     {
         answersPanel.SetActive(true);
@@ -159,20 +224,30 @@ public class QnAController : MonoBehaviour
         SetUIToQuestionData(currentQuestion);
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("QnA");
+    }
+
     void EndGame()
     {
         answersPanel.SetActive(false);
         returnToMenuButton.SetActive(true);
         playAgainButton.SetActive(true);
-        questionText.text = "Felicitaciones! Obtuviste " + totalPoints + " puntos.";
-        if (totalPoints < maxPointsPerQuestion * questionsOrder.Count)
+        questionText.text = "Felicitaciones! Respondiste " + questionsCorrect + " de " + questionsOrder.Count + " preguntas correctamente!";
+        //if (totalPoints < maxPointsPerQuestion * questionsOrder.Count)
+        //{
+        //    questionText.text += " Volve a jugar para mejorar tu puntaje, pero cuidado, las preguntas pueden cambiar!";
+        //}
+        //else
+        //{ 
+        //    questionText.text += " Puntaje perfecto!";
+        //}
+        if (questionsCorrect == questionsOrder.Count)
         {
-            questionText.text += " Volve a jugar para mejorar tu puntaje, pero cuidado, las preguntas pueden cambiar!";
-        }
-        else
-        { 
             questionText.text += " Puntaje perfecto!";
         }
+
     }
 
     public void ReturnToMainMenu()
