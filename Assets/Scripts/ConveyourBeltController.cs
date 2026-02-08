@@ -261,8 +261,12 @@ public class ConveyourBeltController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public Vector2 ReturnTouchPos(int touchId) //not my cleanest, not my dirtiest
+    public Vector2 ReturnTouchPos(int touchId = -1) //not my cleanest, not my dirtiest
     {
+        if (touchId == -1)
+        {
+            return Mouse.current.position.value;
+        }
         if (touchPosAction.ReadValue<TouchState>().touchId == touchId)
         {
             return touchPosAction.ReadValue<TouchState>().position;

@@ -20,6 +20,7 @@ public class ConveyourApple : MonoBehaviour
     [SerializeField] Sprite[] badApplePosibleSprites;
     public bool isBadApple;
     public ConveyourBeltController conveyourBeltController;
+    bool usingTouch = false;
     int dragId;
     private void Start()
     {
@@ -45,7 +46,14 @@ public class ConveyourApple : MonoBehaviour
         }
         if (gfxTargetFollowsTouch)
         {
-            graphicTarget.transform.position = Camera.main.ScreenToWorldPoint(conveyourBeltController.ReturnTouchPos(dragId));
+            if (usingTouch)
+            {
+                graphicTarget.transform.position = Camera.main.ScreenToWorldPoint(conveyourBeltController.ReturnTouchPos(dragId));
+            }
+            else
+            {
+                graphicTarget.transform.position = Camera.main.ScreenToWorldPoint(conveyourBeltController.ReturnTouchPos());
+            }
             graphicTarget.transform.position = new Vector3(graphicTarget.transform.position.x, graphicTarget.transform.position.y, 0.0f);
             Vector2 GFXScreenPos = Camera.main.WorldToScreenPoint(graphicTarget.transform.position);
             if (Vector2.Distance(screenPosWhenDragged, GFXScreenPos) > maxDistanceToThrow)
@@ -64,8 +72,16 @@ public class ConveyourApple : MonoBehaviour
     {
         ExtendedPointerEventData castedEventData = (ExtendedPointerEventData)pointerEventData;
         dragId = castedEventData.touchId;
+        usingTouch = castedEventData.pointerType != UIPointerType.MouseOrPen;
+        if (usingTouch)
+        {
+            screenPosWhenDragged = conveyourBeltController.ReturnTouchPos(dragId);
+        }
+        else
+        { 
+            screenPosWhenDragged = conveyourBeltController.ReturnTouchPos();
+        }
         gfxTargetFollowsTouch = true;
-        screenPosWhenDragged = conveyourBeltController.ReturnTouchPos(dragId);
     }
     public void StopDraggingApple()
     {

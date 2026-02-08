@@ -26,7 +26,7 @@ public class QnAController : MonoBehaviour
     [SerializeField] Question[] easyQuestions;
     [SerializeField] Question[] mediumQuestions;
     [SerializeField] Question[] hardQuestions;
-    [SerializeField] List<Question> questionsData = new List<Question>();
+    List<Question> questionsData = new List<Question>();
     Dificulty currentDificulty;
     [SerializeField] List<int> questionsOrder = new List<int>();
     [SerializeField] ColorBlock correctColor;
