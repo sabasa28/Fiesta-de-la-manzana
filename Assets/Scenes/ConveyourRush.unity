@@ -292,8 +292,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 778, y: 483}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 756.99976, y: 453.00003}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124441566
 MonoBehaviour:
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1873720502663974095, guid: 4e0640eec9640fa40b1747848cce2800, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bf92275a77f74048bb4c4aa6c0124f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -366,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 169, y: 231}
+  m_AnchoredPosition: {x: 63, y: 231}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &253764977
@@ -1982,8 +1982,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 661, y: 483}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 639.99976, y: 453.00003}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357796400
 MonoBehaviour:
@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1873720502663974095, guid: 4e0640eec9640fa40b1747848cce2800, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bf92275a77f74048bb4c4aa6c0124f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2213,12 +2213,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1515439615}
-  conveyourBeltMinigameIntroText: "Dej\xE1 pasar las manzanas sanas y arrastra cualquier
-    otra cosa fuera de la cinta transportadora.  Si pasa algo que no sea una manzana
-    sana perder\xE1s una de tus 3 vidas. Aguanta tanto tiempo como puedas, suerte!"
-  conveyourBeltWrongApplePassedText: Oh no, eso no tendria que haber llegado al otro
-    lado!
-  conveyourBeltGoodAppleDiscardedText: Nooo, esa manzana estaba perfectamente!
+  conveyourBeltMinigameIntroText: "Dej\xE1 pasar las manzanas sanas y arrastr\xE1
+    cualquier otra cosa fuera de la cinta transportadora.  Si pasa algo que no sea
+    una manzana sana perder\xE1s una de tus 3 vidas. Aguant\xE1 tanto tiempo como
+    puedas, suerte!"
+  conveyourBeltWrongApplePassedText: "Oh no, eso no tendr\xEDa que haber llegado
+    al otro lado!"
+  conveyourBeltGoodAppleDiscardedText: Nooo! Esa manzana estaba sana!
   conveyourBeltLoseText: Perdiste tus 3 vidas. Pero lograste juntar X manzanas. Buen
     trabajo!
   mascotText: {fileID: 30051740}
@@ -2266,9 +2267,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2896558764384660861, guid: fa00ed8111d623a4fbb86efd73e490b0, type: 3}
+  m_Sprite: {fileID: 2205969627953737704, guid: 10c4fbb9bb06acb40b01989377e47ce6, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2839,8 +2840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 897, y: 483}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 876, y: 453}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966090045
 MonoBehaviour:
@@ -2862,7 +2863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1873720502663974095, guid: 4e0640eec9640fa40b1747848cce2800, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bf92275a77f74048bb4c4aa6c0124f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

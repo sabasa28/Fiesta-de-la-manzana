@@ -104,6 +104,7 @@ public class QnAController : MonoBehaviour
         {
             questionSprite.sprite = question.questionImage;
             questionText.transform.position = questionTextWithImagePos.position;
+            questionSprite.gameObject.SetActive(true);
         }
         else
         {
@@ -119,6 +120,7 @@ public class QnAController : MonoBehaviour
                 if (question.options[i].sprite)
                 {
                     optionsSprite[i].sprite = question.options[i].sprite;
+                    optionsSprite[i].gameObject.SetActive(true);
                 }
                 else
                 {

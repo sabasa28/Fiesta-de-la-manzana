@@ -21,4 +21,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Jugo de manzana
     sprite: {fileID: 0}
+  - text: Chips de manzana
+    sprite: {fileID: 0}
   correctOption: 1

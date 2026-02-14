@@ -22,4 +22,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Aporta grasas saludables
     sprite: {fileID: 0}
+  - text: "Aporta az\xFAcares refinados"
+    sprite: {fileID: 0}
   correctOption: 1

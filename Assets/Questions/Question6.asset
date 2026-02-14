@@ -20,6 +20,8 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: 50
     sprite: {fileID: 0}
+  - text: 1
+    sprite: {fileID: 0}
   - text: 5
     sprite: {fileID: 0}
-  correctOption: 2
+  correctOption: 3

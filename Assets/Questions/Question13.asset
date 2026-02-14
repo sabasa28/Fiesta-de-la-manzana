@@ -22,4 +22,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: 3018
     sprite: {fileID: 0}
+  - text: 10.114
+    sprite: {fileID: 0}
   correctOption: 1

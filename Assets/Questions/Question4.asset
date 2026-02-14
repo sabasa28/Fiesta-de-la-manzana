@@ -22,4 +22,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: "5,6 kg \u2013 8kg"
     sprite: {fileID: 0}
+  - text: 1 kg
+    sprite: {fileID: 0}
   correctOption: 2

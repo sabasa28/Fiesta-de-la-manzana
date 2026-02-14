@@ -20,6 +20,8 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Utilizar mallas antigranizo
     sprite: {fileID: 0}
+  - text: Cortar las malezas entre las filas
+    sprite: {fileID: 0}
   - text: Regar menos
     sprite: {fileID: 0}
   correctOption: 1

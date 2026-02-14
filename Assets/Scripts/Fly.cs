@@ -18,11 +18,14 @@ public class Fly : MonoBehaviour, IBicho
     bool didFullRotation = true;
     [SerializeField] float minAngleToDetectFullRotation;
     [SerializeField] GameObject applePiece;
+    bool goingRight = true;
+    [SerializeField] SpriteRenderer gfx;
     private void Start()
     {
         targetPos = target.transform.position;
         initialPos = transform.position;
         transform.up = (targetPos - initialPos).normalized;
+        CheckTargetDirAndFlip();
     }
     void Update()
     {
@@ -47,6 +50,7 @@ public class Fly : MonoBehaviour, IBicho
                     transform.up = (targetPos - transform.position).normalized;
                     didFullRotation = true;
                     turning = false;
+                    CheckTargetDirAndFlip();
                 }
             }
         }
@@ -74,6 +78,7 @@ public class Fly : MonoBehaviour, IBicho
             transform.position = targetPos;
             targetPos = initialPos;
             applePiece.SetActive(true);
+            CheckTargetDirAndFlip();
             turning = false;
             transform.up = (targetPos - transform.position).normalized;
             going = false;
@@ -92,9 +97,16 @@ public class Fly : MonoBehaviour, IBicho
         transform.up = (targetPos - transform.position).normalized;
         going = false;
         speed *= 3;
+        CheckTargetDirAndFlip();
     }
     public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
     {
         target = appleTarget;
+    }
+
+    void CheckTargetDirAndFlip()
+    {
+        goingRight = targetPos.x > transform.position.x;
+        gfx.flipY = !goingRight;
     }
 }

@@ -21,4 +21,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Manzana deshidratada
     sprite: {fileID: 0}
+  - text: Manzana enlatada
+    sprite: {fileID: 0}
   correctOption: 0

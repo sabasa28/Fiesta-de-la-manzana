@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -7,6 +8,7 @@ public class Butterfly : MonoBehaviour, IBicho
     Vector2 minBounds;
     Vector3 targetPos;
     Vector3 initialPos;
+    Vector3 pathStart;
     [SerializeField] float speed;
     int flightsLeft = 5;
     void Start()
@@ -18,8 +20,8 @@ public class Butterfly : MonoBehaviour, IBicho
     }
     private void Update()
     {
-        float movement = speed * Time.deltaTime;
         Vector3 pathLeft = (targetPos - transform.position);
+        float movement = Time.deltaTime * speed;
         if (movement <= pathLeft.magnitude)
         {
             transform.position += pathLeft.normalized * movement;
@@ -45,6 +47,7 @@ public class Butterfly : MonoBehaviour, IBicho
     }
     void SetNextTarget()
     {
+        pathStart = transform.position;
         targetPos = new Vector3(Random.Range(minBounds.x, maxBounds.x), Random.Range(minBounds.y, maxBounds.y), 0.0f);
     }
     public void ScareAway()
