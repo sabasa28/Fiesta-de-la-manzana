@@ -20,8 +20,8 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Enero
     sprite: {fileID: 0}
-  - text: Febrero
-    sprite: {fileID: 0}
   - text: Marzo
+    sprite: {fileID: 0}
+  - text: Julio
     sprite: {fileID: 0}
   correctOption: 1

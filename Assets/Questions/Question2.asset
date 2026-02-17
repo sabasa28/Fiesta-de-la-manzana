@@ -20,10 +20,8 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Granny Smith, King David, Golden Delicious
     sprite: {fileID: 0}
-  - text: Red Delicious, Fuji, Braeburn
-    sprite: {fileID: 0}
-  - text: Red Delicious, Fuji, Braeburn
-    sprite: {fileID: 0}
   - text: "Williams, Packhams, D\xB4Ajou"
+    sprite: {fileID: 0}
+  - text: Red Delicious, Fuji, Braeburn
     sprite: {fileID: 0}
   correctOption: 0

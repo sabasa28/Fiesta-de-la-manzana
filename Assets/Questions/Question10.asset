@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b297bf078d647a34ebc205b8a05289da, type: 3}
   m_Name: Question10
   m_EditorClassIdentifier: 
-  questionText: "Que pod\xE9s encontrar si vas al INTA Alto Valle?"
+  questionText: "\xBFQu\xE9 pod\xE9s encontrar si vas al INTA Alto Valle?"
   questionImage: {fileID: 0}
   options:
   - text: Un laboratorio de suelo y agua
-    sprite: {fileID: 0}
-  - text: "Una plantaci\xF3n de naranja"
     sprite: {fileID: 0}
   - text: "Un insectario de ben\xE9ficos"
     sprite: {fileID: 0}
   - text: "Un banco de germoplasma de pom\xE1ceas"
     sprite: {fileID: 0}
-  correctOption: 0
+  - text: Todas las opciones son correctas
+    sprite: {fileID: 0}
+  correctOption: 3

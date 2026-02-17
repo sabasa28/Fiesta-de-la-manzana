@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,8 +36,16 @@ public class BichosSpawner : MonoBehaviour
     [SerializeField] string endscreenMascotDialogue;
     [SerializeField] TextMeshProUGUI mascotText;
     Vector3 mascotInitialPos;
+    [SerializeField] GameObject menuButton;
+    bool buttonsEnabled = true;
+    Vector3 mascotInitialScale;
+    [SerializeField] MascotAnimationController mascotAnimationController;
+
     void Start()
     {
+        ChangeMenuButtonState(true);
+        StartCoroutine(DisableButtonsShortly());
+        mascotInitialScale = mascot.transform.localScale;
         mascotInitialPos = mascot.transform.position;
         nextSpawnTime = firstSpawnTime;
         sideAx = topLeftCorner.position.x;
@@ -110,32 +119,63 @@ public class BichosSpawner : MonoBehaviour
         endSpecificUI.SetActive(false);
         startEndPanel.SetActive(true);
         mascot.transform.position = mascotEndscreenPos.position;
+        mascot.transform.localScale = mascotInitialScale * 1.5f;
     }
 
     void EndGame()
     {
+        StartCoroutine(DisableButtonsShortly());
         mascotText.text = endscreenMascotDialogue;
         startEndPanel.SetActive(true);
         endSpecificUI.SetActive(true);
         startSpecificUI.SetActive(false);
         gameStarted = false;
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
         mascot.transform.position = mascotEndscreenPos.position;
+        mascot.transform.localScale = mascotInitialScale * 1.5f;
     }
 
     public void StartGame()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
+        ChangeMenuButtonState(false);
         startEndPanel.SetActive(false);
         gameStarted = true;
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Idle);
         mascot.transform.position = mascotInitialPos;
+        mascot.transform.localScale = mascotInitialScale;
     }
 
     public void ReloadScene()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         SceneManager.LoadScene("BichosAttack");
     }
 
     public void BackToMenu()
-    { 
+    {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         SceneManager.LoadScene("MainMenu");
+    }
+
+    void ChangeMenuButtonState(bool active)
+    {
+        menuButton.SetActive(active);
+    }
+
+    IEnumerator DisableButtonsShortly()
+    {
+        buttonsEnabled = false;
+        yield return new WaitForSeconds(0.4f);
+        buttonsEnabled = true;
     }
 }

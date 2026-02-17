@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b297bf078d647a34ebc205b8a05289da, type: 3}
   m_Name: Question4
   m_EditorClassIdentifier: 
-  questionText: "\xBFCuantos kg de manzana se consume por persona al a\xF1o de en
+  questionText: "\xBFCu\xE1ntos kg de manzana se consume por persona al a\xF1o en
     Argentina?"
   questionImage: {fileID: 0}
   options:

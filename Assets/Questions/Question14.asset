@@ -22,5 +22,5 @@ MonoBehaviour:
   - text: 
     sprite: {fileID: -2417996921730340936, guid: 97e5da2a0806ab34f958c1dce46a9efe, type: 3}
   - text: 
-    sprite: {fileID: 5152268022690361462, guid: 628be10d7ec1896408abf4166debabb6, type: 3}
+    sprite: {fileID: -342258585435058890, guid: d8f300e19cb2ec4419d254171d8df8e9, type: 3}
   correctOption: 2

@@ -17,13 +17,13 @@ MonoBehaviour:
   questionImage: {fileID: 0}
   options:
   - text: "Investigaci\xF3n cient\xEDfica y transferencia t\xE9cnica para el sector
-      agropecuario:   productores, empresas, trabajadores, entre otros."
+      agropecuario:   productores, empresas, trabajadores, entre otros"
     sprite: {fileID: 0}
   - text: "Autoriza el traslado de fruta y verdura en veh\xEDculos certificados y
-      controla el origen de los productos."
+      controla el origen de los productos"
     sprite: {fileID: 0}
-  - text: Autoriza las exportaciones de manzanas en el puerto de San Antonio Este.
+  - text: Controla el ingreso de fruta a la Patagonia en las barreras sanitarias
     sprite: {fileID: 0}
-  - text: Controla el ingreso de fruta a la Patagonia en las barreras sanitarias.
+  - text: Habilita el comercio de fruta y verdura en verdulerias
     sprite: {fileID: 0}
   correctOption: 0

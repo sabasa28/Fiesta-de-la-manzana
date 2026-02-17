@@ -176,9 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dej\xE1 pasar las manzanas sanas y arrastra cualquier otra cosa fuera
-    de la cinta transportadora. \nSi pasa algo que no sea una manzana sana perder\xE1s
-    una de tus 3 vidas. Aguanta tanto tiempo como puedas, suerte!"
+  m_text: A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -205,7 +203,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.5
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -400,7 +398,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1515439613}
-  - {fileID: 1970191561}
+  - {fileID: 2033986653}
   - {fileID: 1966090044}
   - {fileID: 124441565}
   - {fileID: 1357796399}
@@ -734,16 +732,16 @@ MonoBehaviour:
   - {fileID: 124441566}
   - {fileID: 1966090045}
   mascot: {fileID: 1515439614}
-  mascotEndscreenPos: {fileID: 1970191561}
+  mascotEndscreenPos: {fileID: 2033986653}
   startEndPanel: {fileID: 1691331769}
   startSpecificUI: {fileID: 1717256347}
   endSpecificUI: {fileID: 878037532}
   mascotText: {fileID: 535848565}
-  conveyourBeltMinigameIntroText: "Dej\xE1 pasar las manzanas sanas y arrastra cualquier
-    otra cosa fuera de la cinta transportadora.  Si pasa algo que no sea una manzana
-    sana perder\xE1s una de tus 3 vidas. Aguanta tanto tiempo como puedas, suerte!"
-  conveyourBeltLoseText: Perdiste tus 3 vidas. Pero lograste juntar X manzanas. Buen
-    trabajo!
+  conveyourBeltMinigameIntroText: "Dej\xE1 pasar las manzanas sanas y arrastr\xE1
+    cualquier otra cosa fuera de la cinta transportadora.  Si pasa algo que no sea
+    una manzana sana perder\xE1s una de tus 3 vidas. Aguant\xE1 tanto tiempo como
+    puedas, suerte!"
+  conveyourBeltLoseText: Perdiste tus 3 vidas. Pero lograste juntar X manzanas.
   playerInput: {fileID: 569986574}
   touchPosAction:
     m_Name: Touch Pos
@@ -844,6 +842,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  menuButton: {fileID: 1326098022}
 --- !u!114 &569986574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,9 +1292,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1691331770}
   - {fileID: 253764978}
   - {fileID: 1326098023}
-  - {fileID: 1691331770}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2173,6 +2172,7 @@ GameObject:
   - component: {fileID: 1515439616}
   - component: {fileID: 1515439615}
   - component: {fileID: 1515439614}
+  - component: {fileID: 1515439618}
   m_Layer: 5
   m_Name: Mascot
   m_TagString: Untagged
@@ -2212,11 +2212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc60d829bdb2b74ebe790037c1427ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1515439615}
-  conveyourBeltMinigameIntroText: "Dej\xE1 pasar las manzanas sanas y arrastr\xE1
-    cualquier otra cosa fuera de la cinta transportadora.  Si pasa algo que no sea
-    una manzana sana perder\xE1s una de tus 3 vidas. Aguant\xE1 tanto tiempo como
-    puedas, suerte!"
+  conveyourBeltMinigameIntroText: 
   conveyourBeltWrongApplePassedText: "Oh no, eso no tendr\xEDa que haber llegado
     al otro lado!"
   conveyourBeltGoodAppleDiscardedText: Nooo! Esa manzana estaba sana!
@@ -2225,6 +2221,7 @@ MonoBehaviour:
   mascotText: {fileID: 30051740}
   mascotTextHolder: {fileID: 179069298}
   timeDisplayingText: 5
+  mascotAnimationController: {fileID: 1515439618}
 --- !u!95 &1515439615
 Animator:
   serializedVersion: 7
@@ -2285,6 +2282,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515439612}
   m_CullTransparentMesh: 1
+--- !u!114 &1515439618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515439612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30fad5778174b04d8e75c7be294c1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MascotAnimationController
+  initialAnimation: 5
 --- !u!1 &1683454451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,41 +2891,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966090043}
   m_CullTransparentMesh: 1
---- !u!1 &1970191560
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1970191561}
-  m_Layer: 5
-  m_Name: MascotEndscreenPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1970191561
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970191560}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 253764978}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 81.00008, y: 269.00006}
-  m_SizeDelta: {x: -1519.5305, y: -680.2644}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1972948813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,6 +2967,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972948813}
   m_CullTransparentMesh: 1
+--- !u!1 &2033986652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2033986653}
+  m_Layer: 5
+  m_Name: MascotEndscreenPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2033986653
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033986652}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 253764978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 63.000053, y: 161.00002}
+  m_SizeDelta: {x: -1520, y: -680}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &2075987783
 GameObject:
   m_ObjectHideFlags: 0

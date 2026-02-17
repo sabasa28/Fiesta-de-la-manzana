@@ -43,6 +43,15 @@ public class QnAController : MonoBehaviour
     int totalPoints = 0;
     int questionsCorrect = 0;
     bool changingQuestion = false;
+    [SerializeField] GameObject menuButton;
+    bool buttonsEnabled = true;
+    [SerializeField] MascotAnimationController mascotAnimationController;
+
+
+    private void Start()
+    {
+        ChangeMenuButtonState(true);
+    }
 
     void GetRandomQuestionsOrder()
     {
@@ -93,6 +102,7 @@ public class QnAController : MonoBehaviour
 
     void SetUIToQuestionData(Question question)
     {
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.IdleHand);
         foreach (Button button in optionsButtons)
         {
             button.gameObject.SetActive(true);
@@ -155,6 +165,10 @@ public class QnAController : MonoBehaviour
     }
     void CheckIfAnswerIsCorrect(int optionPresssed)
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         if (changingQuestion)
         {
             return;
@@ -163,10 +177,12 @@ public class QnAController : MonoBehaviour
         {
             optionsButtons[optionPresssed].colors = correctColor;
             questionsCorrect++;
+            mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappy);
             //totalPoints += pointsThisQuestion;
         }
         else
         {
+            mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
             optionsButtons[optionPresssed].colors = incorrectColor;
             optionsButtons[optionPresssed].interactable = false;
             optionsButtons[(int)currentQuestion.correctOption].colors = correctColor;
@@ -206,10 +222,16 @@ public class QnAController : MonoBehaviour
     }
 
     void SetDificulty(Dificulty newDificulty)
-    { 
+    {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
+        StartCoroutine(DisableButtonsShortly());
         currentDificulty = newDificulty;
         questionText.text = instructionsText;
         startGameButton.SetActive(true);
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Idle);
         foreach (GameObject button in dificultyButtons)
         {
             button.SetActive(false);
@@ -218,6 +240,12 @@ public class QnAController : MonoBehaviour
 
     public void StartGame()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
+        StartCoroutine(DisableButtonsShortly());
+        ChangeMenuButtonState(false);
         answersPanel.SetActive(true);
         returnToMenuButton.SetActive(false);
         playAgainButton.SetActive(false);
@@ -228,15 +256,20 @@ public class QnAController : MonoBehaviour
 
     public void ReloadScene()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         SceneManager.LoadScene("QnA");
     }
 
     void EndGame()
     {
+        StartCoroutine(DisableButtonsShortly());
         answersPanel.SetActive(false);
         returnToMenuButton.SetActive(true);
         playAgainButton.SetActive(true);
-        questionText.text = "Felicitaciones! Respondiste " + questionsCorrect + " de " + questionsOrder.Count + " preguntas correctamente!";
+        questionText.text = "Respondiste " + questionsCorrect + " de " + questionsOrder.Count + " preguntas correctamente!";
         //if (totalPoints < maxPointsPerQuestion * questionsOrder.Count)
         //{
         //    questionText.text += " Volve a jugar para mejorar tu puntaje, pero cuidado, las preguntas pueden cambiar!";
@@ -245,15 +278,46 @@ public class QnAController : MonoBehaviour
         //{ 
         //    questionText.text += " Puntaje perfecto!";
         //}
-        if (questionsCorrect == questionsOrder.Count)
+        if (questionsCorrect > questionsOrder.Count / 2)
         {
-            questionText.text += " Puntaje perfecto!";
+            questionText.text = "Felicitaciones! " + questionText.text;
+            if (questionsCorrect == questionsOrder.Count)
+            {
+                questionText.text += " Puntaje perfecto!";
+                mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
+            }
+            else
+            {
+                mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Idle);
+            }
+        }
+        else
+        {
+            mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
+            questionText.text += " Podés hacerlo mejor, volvé a intentar!";
         }
 
     }
 
+    void ChangeMenuButtonState(bool active)
+    {
+        StartCoroutine(DisableButtonsShortly());
+        menuButton.SetActive(active);
+    }
+
     public void ReturnToMainMenu()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         SceneManager.LoadScene("MainMenu");
+    }
+
+    IEnumerator DisableButtonsShortly()
+    {
+        buttonsEnabled = false;
+        yield return new WaitForSeconds(0.4f);
+        buttonsEnabled = true;
     }
 }

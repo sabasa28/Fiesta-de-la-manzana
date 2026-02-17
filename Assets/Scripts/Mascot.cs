@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 public class Mascot : MonoBehaviour
 {
-    [SerializeField] Animator animator;
     [SerializeField] string conveyourBeltMinigameIntroText;
     [SerializeField] string conveyourBeltWrongApplePassedText;
     [SerializeField] string conveyourBeltGoodAppleDiscardedText;
@@ -12,6 +11,14 @@ public class Mascot : MonoBehaviour
     bool displayingText = false;
     [SerializeField] float timeDisplayingText;
     float timer = 0.0f;
+    [SerializeField] MascotAnimationController mascotAnimationController;
+
+    public enum ReactionToScore
+    {
+        Sad,
+        Happy,
+        VeryHappy
+    }
 
     void Update()
     {
@@ -22,12 +29,14 @@ public class Mascot : MonoBehaviour
             {
                 displayingText = false;
                 mascotTextHolder.SetActive(false);
+                mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Idle);
             }
         }
     }
 
-    public void SayConveyourBeltMinigameIntroText()
+    public void SayConveyourBeltMinigameIntroText() //NO SE USA
     {
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
         displayingText = true;
         mascotTextHolder.SetActive(true);
         mascotText.text = conveyourBeltMinigameIntroText;
@@ -36,6 +45,7 @@ public class Mascot : MonoBehaviour
 
     public void SayConveyourBeltGoodAppleDiscardedText()
     {
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
         displayingText = true;
         mascotTextHolder.SetActive(true);
         mascotText.text = conveyourBeltGoodAppleDiscardedText;
@@ -44,6 +54,7 @@ public class Mascot : MonoBehaviour
 
     public void SayConveyourBeltWrongApplePassedText()
     {
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
         displayingText = true;
         mascotTextHolder.SetActive(true);
         mascotText.text = conveyourBeltWrongApplePassedText;
@@ -52,6 +63,7 @@ public class Mascot : MonoBehaviour
 
     public void SayConveyourBeltLoseText(int applesSaved)
     {
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.IdleHand);
         displayingText = true;
         mascotTextHolder.SetActive(true);
         conveyourBeltLoseText = conveyourBeltLoseText.Replace("X", applesSaved.ToString());
@@ -60,7 +72,29 @@ public class Mascot : MonoBehaviour
     }
 
     public void ShutUp()
-    { 
+    {
         mascotTextHolder.SetActive(false);
+        displayingText = false;
+    }
+
+    public void SetAsIdle()
+    { 
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Idle);
+    }
+
+    public void SetEndGameFace(ReactionToScore reactionToScore)
+    {
+        switch (reactionToScore)
+        {
+            case ReactionToScore.Sad:
+                mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
+                break;
+            case ReactionToScore.Happy:
+                mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappy);
+                break;
+            case ReactionToScore.VeryHappy:
+                mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
+                break;
+        }
     }
 }

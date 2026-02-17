@@ -41,6 +41,7 @@ public class ConveyourBeltController : MonoBehaviour
     [SerializeField] TextMeshProUGUI mascotText;
     [SerializeField] string conveyourBeltMinigameIntroText;
     [SerializeField] string conveyourBeltLoseText;
+    Vector3 mascotInitialScale;
     Vector3 mascotInitialPos;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] InputAction touchPosAction;
@@ -55,6 +56,8 @@ public class ConveyourBeltController : MonoBehaviour
     [SerializeField] InputAction touchPosAction9;
     [SerializeField] InputAction touchPressedAction;
     Touch touchDebug;
+    [SerializeField] GameObject menuButton;
+    bool buttonsEnabled = true;
 
     private void Awake()
     {
@@ -89,6 +92,8 @@ public class ConveyourBeltController : MonoBehaviour
     }
     private void Start()
     {
+        ChangeMenuButtonState(true);
+        mascotInitialScale = mascot.transform.localScale;
         mascotInitialPos = mascot.transform.position;
         initialSpeed = speed;
         minYToSpawn = minYToSpawnTrans.position.y;
@@ -158,7 +163,6 @@ public class ConveyourBeltController : MonoBehaviour
         {
             apple.movementSpeed = speed;
         }
-        Debug.Log("SPEEEEEEEEEEEEEEED");
     }
 
     public void RemoveAppleFromList(ConveyourApple appleToRemove, bool remainedInConveyournBelt)
@@ -166,15 +170,18 @@ public class ConveyourBeltController : MonoBehaviour
         spawnedApples.Remove(appleToRemove);
         if (appleToRemove.isBadApple == remainedInConveyournBelt)
         {
-            if (remainedInConveyournBelt)
-            {
-                mascot.SayConveyourBeltWrongApplePassedText();
-            }
-            else
-            {
-                mascot.SayConveyourBeltGoodAppleDiscardedText();
-            }
             LooseLife();
+            if (lives > 0)
+            {
+                if (remainedInConveyournBelt)
+                {
+                    mascot.SayConveyourBeltWrongApplePassedText();
+                }
+                else
+                {
+                    mascot.SayConveyourBeltGoodAppleDiscardedText();
+                }
+            }
         }
         else if (!appleToRemove.isBadApple)
         {
@@ -214,23 +221,43 @@ public class ConveyourBeltController : MonoBehaviour
 
     void SetAndEnableStartScreen()
     {
+        StartCoroutine(DisableButtonsShortly());
         mascot.ShutUp();
         mascotText.text = conveyourBeltMinigameIntroText;
         startSpecificUI.SetActive(true);
         endSpecificUI.SetActive(false);
         startEndPanel.SetActive(true);
         mascot.transform.position = mascotEndscreenPos.position;
+        mascot.transform.localScale = mascotInitialScale * 1.5f;
     }
 
     void EndGame()
     {
+        Mascot.ReactionToScore reactionToScore = Mascot.ReactionToScore.Happy;
+        StartCoroutine(DisableButtonsShortly());
         mascotText.text = conveyourBeltLoseText.Replace("X", applesSaved.ToString());
+        if (applesSaved < 5)
+        {
+            reactionToScore = Mascot.ReactionToScore.Sad;
+        }
+        else
+        { 
+            mascotText.text += " Buen trabajo!";
+        }
+        if (applesSaved > PlayerPrefs.GetInt("ConveyourHighscore", 0))
+        {
+            PlayerPrefs.SetInt("ConveyourHighscore", applesSaved);
+            mascotText.text += " Nuevo record!";
+            reactionToScore = Mascot.ReactionToScore.VeryHappy;
+        }
         startEndPanel.SetActive(true);
         endSpecificUI.SetActive(true);
         startSpecificUI.SetActive(false);
         mascot.ShutUp();
+        mascot.SetEndGameFace(reactionToScore);
         gameStarted = false;
         mascot.transform.position = mascotEndscreenPos.position;
+        mascot.transform.localScale = mascotInitialScale * 1.5f;
         foreach (ConveyourApple apple in spawnedApples)
         {
             Destroy(apple.gameObject);
@@ -240,13 +267,24 @@ public class ConveyourBeltController : MonoBehaviour
 
     public void StartGame()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
+        mascot.SetAsIdle();
         startEndPanel.SetActive(false);
+        ChangeMenuButtonState(false);
         gameStarted = true;
         mascot.transform.position = mascotInitialPos;
+        mascot.transform.localScale = mascotInitialScale;
     }
 
     public void PlayAgain()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         ResetLives();
         applesSaved = 0;
         spawnTimer = 0.0f;
@@ -258,6 +296,10 @@ public class ConveyourBeltController : MonoBehaviour
 
     public void BackToMenu()
     {
+        if (!buttonsEnabled)
+        {
+            return;
+        }
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -308,5 +350,17 @@ public class ConveyourBeltController : MonoBehaviour
             return touchPosAction9.ReadValue<TouchState>().position;
         }
         return Vector2.zero;
+    }
+
+    void ChangeMenuButtonState(bool active)
+    {
+        menuButton.SetActive(active);
+    }
+
+    IEnumerator DisableButtonsShortly()
+    {
+        buttonsEnabled = false;
+        yield return new WaitForSeconds(0.4f);
+        buttonsEnabled = true;
     }
 }
