@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Carpocapsa : MonoBehaviour, IBicho
 {
@@ -11,20 +10,25 @@ public class Carpocapsa : MonoBehaviour, IBicho
     [SerializeField] GameObject applePiece;
     bool scared = false;
     public BichosSpawner spawner;
+    [SerializeField] Transform gfxSprite;
+    Vector3 originalGFXScale;
+    Vector3 reversedGFXScale;
 
     private void Start()
     {
+        originalGFXScale = gfxSprite.localScale;
+        reversedGFXScale = new Vector3 (-originalGFXScale.x, originalGFXScale.y, originalGFXScale.z);
         targetPos = target.transform.position;
+        gfxSprite.localScale = targetPos.x < transform.position.x? originalGFXScale : reversedGFXScale;
         initialPos = transform.position;
     }
     void Update()
     {
         float movement = speed * Time.deltaTime;
         Vector3 pathLeft = (targetPos - transform.position);
-        transform.up = pathLeft.normalized;
         if (movement <= pathLeft.magnitude)
         {
-            transform.position += transform.up * movement;
+            transform.position += pathLeft.normalized * movement;
         }
         else
         {
@@ -34,6 +38,7 @@ public class Carpocapsa : MonoBehaviour, IBicho
             }
             transform.position = targetPos;
             targetPos = initialPos;
+            gfxSprite.localScale = targetPos.x < transform.position.x ? originalGFXScale : reversedGFXScale;
             applePiece.SetActive(true);
             going = false;
             speed *= 3;
@@ -46,6 +51,7 @@ public class Carpocapsa : MonoBehaviour, IBicho
             return;
         }
         targetPos = initialPos;
+        gfxSprite.localScale = targetPos.x < transform.position.x ? originalGFXScale : reversedGFXScale;
         going = false;
         speed *= 3;
         scared = true;

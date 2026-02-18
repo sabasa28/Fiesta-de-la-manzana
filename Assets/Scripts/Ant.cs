@@ -12,6 +12,7 @@ public class Ant : MonoBehaviour, IBicho
     [SerializeField] GameObject leafPiece;
     bool scared = false;
     public BichosSpawner spawner;
+    [SerializeField] Animator animator;
 
     public enum PosInPath // not my cleanest
     { 
@@ -56,6 +57,7 @@ public class Ant : MonoBehaviour, IBicho
                         targetPos = secondPoint.position;
                         going = false;
                         speed *= 3;
+                        animator.SetFloat("Speed", speed);
                         targetPos = secondPoint.position;
                         leafPiece.SetActive(true);
                         break;
@@ -89,6 +91,7 @@ public class Ant : MonoBehaviour, IBicho
         }
         going = false;
         speed *= 3;
+        animator.SetFloat("Speed", speed);
         scared = true;
         switch (currentPosInPath)
         {

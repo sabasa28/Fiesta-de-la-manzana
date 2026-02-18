@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Butterfly : MonoBehaviour, IBicho
 {
@@ -13,6 +12,7 @@ public class Butterfly : MonoBehaviour, IBicho
     int flightsLeft = 5;
     bool scared = false;
     public BichosSpawner spawner;
+    [SerializeField] SpriteRenderer gfxSprite;
 
     void Start()
     {
@@ -40,6 +40,7 @@ public class Butterfly : MonoBehaviour, IBicho
             else if (flightsLeft == 0)
             {
                 targetPos = initialPos;
+                gfxSprite.flipX = targetPos.x > transform.position.x;
             }
             else
             {
@@ -52,6 +53,7 @@ public class Butterfly : MonoBehaviour, IBicho
     {
         pathStart = transform.position;
         targetPos = new Vector3(Random.Range(minBounds.x, maxBounds.x), Random.Range(minBounds.y, maxBounds.y), 0.0f);
+        gfxSprite.flipX = targetPos.x > transform.position.x;
     }
     public void ScareAway()
     {
@@ -59,6 +61,7 @@ public class Butterfly : MonoBehaviour, IBicho
         flightsLeft = 0;
         speed *= 3;
         scared = true;
+        gfxSprite.flipX = targetPos.x > transform.position.x;
     }
 
     public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)

@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287952118758157}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.661687, w: 0.74978024}
-  m_LocalPosition: {x: 0.08, y: 0.661, z: 0}
-  m_LocalScale: {x: 0.39999995, y: 0.39999995, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.15568586, w: 0.9878067}
+  m_LocalPosition: {x: -2.0200002, y: 6.3800006, z: 0}
+  m_LocalScale: {x: 0.50000006, y: 0.50000006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2274621242708450362}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 82.857}
+  m_Father: {fileID: 8670943323237856751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.913}
 --- !u!212 &5459906266148119540
 SpriteRenderer:
   serializedVersion: 2
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5552214218538809620, guid: 44aa771b077d3ce469bc0fef38c42654, type: 3}
+  m_Sprite: {fileID: -108306979673434115, guid: 0f773545cf5473b4493c78677f571715, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +123,6 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5961457130026137498}
   - {fileID: 8670943323237856751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -140,10 +139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  midPoint: {fileID: 0}
+  firstPoint: {fileID: 0}
+  secondPoint: {fileID: 0}
   speed: 2
   leafPiece: {fileID: 4287952118758157}
   spawner: {fileID: 0}
+  animator: {fileID: 7308070899030430320}
 --- !u!114 &88188932417515504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +250,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.22, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5961457130026137498}
   m_Father: {fileID: 2274621242708450362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3401076584787443461
