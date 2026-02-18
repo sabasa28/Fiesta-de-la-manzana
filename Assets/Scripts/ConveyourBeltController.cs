@@ -74,7 +74,6 @@ public class ConveyourBeltController : MonoBehaviour
         touchPosAction9 = playerInput.actions["TouchPosition9"];
 
 
-        Debug.Log(touchPressedAction.name);
     }
     private void OnEnable()
     {
@@ -84,11 +83,9 @@ public class ConveyourBeltController : MonoBehaviour
     {
         touchPressedAction.performed -= TouchPressedEvent;
     }
-    void TouchPressedEvent(InputAction.CallbackContext context)
+    void TouchPressedEvent(InputAction.CallbackContext context) //esta al pedo pero me dio miedo sacarlo a ultimo momento
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAH");
         float value = context.ReadValue<float>();
-        Debug.Log(value);
     }
     private void Start()
     {
@@ -242,13 +239,17 @@ public class ConveyourBeltController : MonoBehaviour
         }
         else
         { 
-            mascotText.text += " Buen trabajo!";
+            mascotText.text += "\n¡Buen trabajo!";
         }
         if (applesSaved > PlayerPrefs.GetInt("ConveyourHighscore", 0))
         {
             PlayerPrefs.SetInt("ConveyourHighscore", applesSaved);
-            mascotText.text += " Nuevo record!";
+            mascotText.text += "\n¡Conseguiste un nuevo récord!";
             reactionToScore = Mascot.ReactionToScore.VeryHappy;
+        }
+        else
+        {
+            mascotText.text += "\nEl récord actual es de " + PlayerPrefs.GetInt("ConveyourHighscore", 0) + ".";
         }
         startEndPanel.SetActive(true);
         endSpecificUI.SetActive(true);
@@ -271,7 +272,7 @@ public class ConveyourBeltController : MonoBehaviour
         {
             return;
         }
-        mascot.SetAsIdle();
+        mascot.SayConveyourBeltMinigameLivesText();
         startEndPanel.SetActive(false);
         ChangeMenuButtonState(false);
         gameStarted = true;

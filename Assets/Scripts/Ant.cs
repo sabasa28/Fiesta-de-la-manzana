@@ -3,17 +3,27 @@ using UnityEngine;
 public class Ant : MonoBehaviour, IBicho
 {
     public Transform target;
-    public Transform midPoint;
+    public Transform firstPoint;
+    public Transform secondPoint;
     Vector3 targetPos;
     Vector3 initialPos;
     [SerializeField] float speed;
     bool going = true;
     [SerializeField] GameObject leafPiece;
-    bool passedMidpoint = false;
+    bool scared = false;
+    public BichosSpawner spawner;
+
+    public enum PosInPath // not my cleanest
+    { 
+        StartAndFirstPoint,
+        FirstPointAndSecond,
+        SecondPointAndLeaf
+    }
+    PosInPath currentPosInPath = PosInPath.StartAndFirstPoint;
 
     private void Start()
     {
-        targetPos = midPoint.position;
+        targetPos = firstPoint.position;
         initialPos = transform.position;
     }
     void Update()
@@ -28,31 +38,44 @@ public class Ant : MonoBehaviour, IBicho
         else
         {
             transform.position = targetPos;
-            if (passedMidpoint)
+
+
+            if (going)
             {
-                if (going)
+                switch (currentPosInPath)
                 {
-                    passedMidpoint = false;
-                    going = false;
-                    speed *= 3;
-                    targetPos = midPoint.position;
-                    leafPiece.SetActive(true);
-                }
-                else
-                {
-                    Destroy(gameObject);
+                    case PosInPath.StartAndFirstPoint:
+                        targetPos = secondPoint.position;
+                        currentPosInPath = PosInPath.FirstPointAndSecond;
+                        break;
+                    case PosInPath.FirstPointAndSecond:
+                        targetPos = target.position;
+                        currentPosInPath = PosInPath.SecondPointAndLeaf;
+                        break;
+                    case PosInPath.SecondPointAndLeaf:
+                        targetPos = secondPoint.position;
+                        going = false;
+                        speed *= 3;
+                        targetPos = secondPoint.position;
+                        leafPiece.SetActive(true);
+                        break;
                 }
             }
             else
             {
-                passedMidpoint = true;
-                if (going)
+                switch (currentPosInPath)
                 {
-                    targetPos = target.position;
-                }
-                else
-                {
-                    targetPos = initialPos;
+                    case PosInPath.StartAndFirstPoint:
+                        LeaveScreen(scared);
+                        break;
+                    case PosInPath.FirstPointAndSecond:
+                        currentPosInPath = PosInPath.StartAndFirstPoint;
+                        targetPos = initialPos;
+                        break;
+                    case PosInPath.SecondPointAndLeaf:
+                        currentPosInPath = PosInPath.FirstPointAndSecond;
+                        targetPos = firstPoint.position;
+                        break;
                 }
             }
         }
@@ -66,22 +89,32 @@ public class Ant : MonoBehaviour, IBicho
         }
         going = false;
         speed *= 3;
-        if (passedMidpoint)
+        scared = true;
+        switch (currentPosInPath)
         {
-            passedMidpoint = false;
-            targetPos = midPoint.position;
-        }
-        else
-        {
-            passedMidpoint = true;
-            targetPos = initialPos;
+            case PosInPath.StartAndFirstPoint:
+                targetPos = initialPos;
+                break;
+            case PosInPath.FirstPointAndSecond:
+                targetPos = firstPoint.position;
+                break;
+            case PosInPath.SecondPointAndLeaf:
+                targetPos = secondPoint.position;
+                break;
         }
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
     {
-        int randomLeaf = Random.Range(0, leafTarget.Length);
-        midPoint = leafMidpoint[randomLeaf];
-        target = leafTarget[randomLeaf];
+        firstPoint = leafFirstPoint;
+        secondPoint = leafSecondpoint;
+        target = leafTarget;
+        spawner = bichoSpawner;
+    }
+
+    public void LeaveScreen(bool scaredAway)
+    {
+        spawner.OnBichoLeftScreen(scaredAway, true);
+        Destroy(gameObject);
     }
 }

@@ -6,6 +6,6 @@ public class HighscoreText : MonoBehaviour
     [SerializeField] TextMeshProUGUI highscoreText;
     void Start()
     {
-        highscoreText.text = "Puntuación máxima: " + PlayerPrefs.GetInt("ConveyourHighscore", 0);
+        highscoreText.text = "Récord: " + PlayerPrefs.GetInt("ConveyourHighscore", 0);
     }
 }

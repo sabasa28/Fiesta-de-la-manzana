@@ -9,6 +9,8 @@ public class Carpocapsa : MonoBehaviour, IBicho
     [SerializeField] float speed;
     bool going = true;
     [SerializeField] GameObject applePiece;
+    bool scared = false;
+    public BichosSpawner spawner;
 
     private void Start()
     {
@@ -27,8 +29,8 @@ public class Carpocapsa : MonoBehaviour, IBicho
         else
         {
             if (!going)
-            { 
-                Destroy(gameObject);
+            {
+                LeaveScreen(scared);
             }
             transform.position = targetPos;
             targetPos = initialPos;
@@ -46,9 +48,20 @@ public class Carpocapsa : MonoBehaviour, IBicho
         targetPos = initialPos;
         going = false;
         speed *= 3;
+        scared = true;
     }
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
     {
         target = appleTarget;
+        spawner = bichoSpawner;
     }
+
+    public void LeaveScreen(bool scaredAway)
+    {
+        spawner.OnBichoLeftScreen(scaredAway, true);
+        Destroy(gameObject);
+    }
+
+
 }

@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179279258818653386}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.70705265, w: 0.707161}
-  m_LocalPosition: {x: 0.31000042, y: -0.84, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.2997069, w: 0.9540314}
+  m_LocalPosition: {x: 0.11, y: -0.99, z: 0}
   m_LocalScale: {x: 0.14999999, y: 0.14999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4718783982085001423}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -34.88}
 --- !u!212 &3539550593026778391
 SpriteRenderer:
   serializedVersion: 2
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3274546290248445040, guid: 58817196ad3b99d45b2265eb5b267c4f, type: 3}
+  m_Sprite: {fileID: -2491470172344894868, guid: dff45059a9fe8d34f941a646e4a5f428, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   minAngleToDetectFullRotation: 5
   applePiece: {fileID: 6743986946847585099}
   gfx: {fileID: 3539550593026778391}
+  spawner: {fileID: 0}
 --- !u!114 &7697110435643999224
 MonoBehaviour:
   m_ObjectHideFlags: 0

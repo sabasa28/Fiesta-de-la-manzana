@@ -47,7 +47,6 @@ public class QnAController : MonoBehaviour
     bool buttonsEnabled = true;
     [SerializeField] MascotAnimationController mascotAnimationController;
 
-
     private void Start()
     {
         ChangeMenuButtonState(true);
@@ -269,7 +268,7 @@ public class QnAController : MonoBehaviour
         answersPanel.SetActive(false);
         returnToMenuButton.SetActive(true);
         playAgainButton.SetActive(true);
-        questionText.text = "Respondiste " + questionsCorrect + " de " + questionsOrder.Count + " preguntas correctamente!";
+        questionText.text = "Respondiste " + questionsCorrect + " de " + questionsOrder.Count + " preguntas correctamente.";
         //if (totalPoints < maxPointsPerQuestion * questionsOrder.Count)
         //{
         //    questionText.text += " Volve a jugar para mejorar tu puntaje, pero cuidado, las preguntas pueden cambiar!";
@@ -280,10 +279,10 @@ public class QnAController : MonoBehaviour
         //}
         if (questionsCorrect > questionsOrder.Count / 2)
         {
-            questionText.text = "Felicitaciones! " + questionText.text;
+            questionText.text = "¡Felicitaciones!\n" + questionText.text;
             if (questionsCorrect == questionsOrder.Count)
             {
-                questionText.text += " Puntaje perfecto!";
+                questionText.text += " ¡Puntaje perfecto!";
                 mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
             }
             else
@@ -294,7 +293,7 @@ public class QnAController : MonoBehaviour
         else
         {
             mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
-            questionText.text += " Podés hacerlo mejor, volvé a intentar!";
+            questionText.text += " ¡Podés hacerlo mejor, volvé a intentar!";
         }
 
     }

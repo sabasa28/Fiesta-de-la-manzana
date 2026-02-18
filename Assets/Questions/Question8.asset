@@ -17,7 +17,7 @@ MonoBehaviour:
   questionImage: {fileID: 0}
   options:
   - text: "Investigaci\xF3n cient\xEDfica y transferencia t\xE9cnica para el sector
-      agropecuario:   productores, empresas, trabajadores, entre otros"
+      agropecuario: productores, empresas, trabajadores, entre otros"
     sprite: {fileID: 0}
   - text: "Autoriza el traslado de fruta y verdura en veh\xEDculos certificados y
       controla el origen de los productos"

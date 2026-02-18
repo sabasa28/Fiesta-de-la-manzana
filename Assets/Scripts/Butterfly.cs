@@ -11,6 +11,9 @@ public class Butterfly : MonoBehaviour, IBicho
     Vector3 pathStart;
     [SerializeField] float speed;
     int flightsLeft = 5;
+    bool scared = false;
+    public BichosSpawner spawner;
+
     void Start()
     {
         minBounds = Camera.main.ScreenToWorldPoint(Vector3.zero);
@@ -40,7 +43,7 @@ public class Butterfly : MonoBehaviour, IBicho
             }
             else
             {
-                Destroy(gameObject);
+                LeaveScreen(scared);
             }
 
         }
@@ -55,7 +58,17 @@ public class Butterfly : MonoBehaviour, IBicho
         targetPos = initialPos;
         flightsLeft = 0;
         speed *= 3;
+        scared = true;
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget){}
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
+    {
+        spawner = bichoSpawner;
+    }
+
+    public void LeaveScreen(bool scaredAway)
+    {
+        spawner.OnBichoLeftScreen(scaredAway, false);
+        Destroy(gameObject);
+    }
 }

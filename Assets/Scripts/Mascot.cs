@@ -34,13 +34,13 @@ public class Mascot : MonoBehaviour
         }
     }
 
-    public void SayConveyourBeltMinigameIntroText() //NO SE USA
+    public void SayConveyourBeltMinigameLivesText()
     {
-        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
+        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.IdleHand);
         displayingText = true;
         mascotTextHolder.SetActive(true);
         mascotText.text = conveyourBeltMinigameIntroText;
-        timer = -4.0f;
+        timer = 0.0f;
     }
 
     public void SayConveyourBeltGoodAppleDiscardedText()

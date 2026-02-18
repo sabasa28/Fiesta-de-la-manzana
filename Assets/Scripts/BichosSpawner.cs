@@ -22,8 +22,9 @@ public class BichosSpawner : MonoBehaviour
     [SerializeField] GameObject[] posibleClimbingSpawns;
     [SerializeField] Transform appleTrans;
     [SerializeField] Transform flowerTrans;
-    [SerializeField] Transform[] leafTrans;
-    [SerializeField] Transform[] leafMidpointsTrans;
+    [SerializeField] Transform leafTrans;
+    [SerializeField] Transform leafFirstPointTrans;
+    [SerializeField] Transform leafSecondPointTrans;
     [SerializeField] Transform timerRepresentation;
     float fullGameTimer = 0.0f;
     [SerializeField] float gameTime;
@@ -40,6 +41,10 @@ public class BichosSpawner : MonoBehaviour
     bool buttonsEnabled = true;
     Vector3 mascotInitialScale;
     [SerializeField] MascotAnimationController mascotAnimationController;
+    [SerializeField] int badBichosRepeled;
+    [SerializeField] int badBichosWhoLeft;
+    [SerializeField] int goodBichosRepeled;
+    [SerializeField] int goodBichosWhoLeft;
 
     void Start()
     {
@@ -87,7 +92,7 @@ public class BichosSpawner : MonoBehaviour
                 spawnOption -= posibleFlyingSpawns.Length;
                 spawnedBicho = Instantiate(posibleClimbingSpawns[spawnOption], climbingSpawnPos.position, Quaternion.identity).GetComponent<IBicho>();
             }
-            spawnedBicho.ReceiveObjective(appleTrans, flowerTrans, leafMidpointsTrans, leafTrans);
+            spawnedBicho.ReceiveObjective(appleTrans, flowerTrans, leafFirstPointTrans, leafSecondPointTrans, leafTrans, this);
         }
     }
 
@@ -125,12 +130,27 @@ public class BichosSpawner : MonoBehaviour
     void EndGame()
     {
         StartCoroutine(DisableButtonsShortly());
-        mascotText.text = endscreenMascotDialogue;
+        mascotText.text = "Ahuyentaste " + badBichosRepeled + " de " + badBichosWhoLeft + " insectos dañinos para la planta, y dejaste en paz a " + (goodBichosWhoLeft - goodBichosRepeled) + " de " 
+            + goodBichosWhoLeft + " insectos no dañinos.";
+        if (badBichosWhoLeft == badBichosRepeled && goodBichosRepeled == 0)
+        {
+            mascotText.text += "\n¡Puntaje perfecto! Felicitaciones.";
+            mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
+        }
+        else if (badBichosRepeled > (badBichosWhoLeft / 2) && (goodBichosWhoLeft - goodBichosRepeled) > (goodBichosWhoLeft / 2))
+        {
+            mascotText.text += "\n¡Buen trabajo!";
+            mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.IdleHand);
+        }
+        else
+        {
+            mascotText.text += "\n¡Podés hacerlo mejor! Volvé a intentar.";
+            mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.Crying);
+        }
         startEndPanel.SetActive(true);
         endSpecificUI.SetActive(true);
         startSpecificUI.SetActive(false);
         gameStarted = false;
-        mascotAnimationController.PlayAnim(MascotAnimationController.MascotAnimations.ClosedEyesHappyHand);
         mascot.transform.position = mascotEndscreenPos.position;
         mascot.transform.localScale = mascotInitialScale * 1.5f;
     }
@@ -177,5 +197,25 @@ public class BichosSpawner : MonoBehaviour
         buttonsEnabled = false;
         yield return new WaitForSeconds(0.4f);
         buttonsEnabled = true;
+    }
+
+    public void OnBichoLeftScreen(bool scaredAway, bool isBadBicho)
+    {
+        if (isBadBicho)
+        {
+            badBichosWhoLeft++;
+            if (scaredAway)
+            {
+                badBichosRepeled++;
+            }
+        }
+        else
+        {
+            goodBichosWhoLeft++;
+            if (scaredAway)
+            {
+                goodBichosRepeled++;
+            }
+        }
     }
 }

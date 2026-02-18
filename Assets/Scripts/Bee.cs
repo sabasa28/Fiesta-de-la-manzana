@@ -9,6 +9,8 @@ public class Bee : MonoBehaviour, IBicho
     [SerializeField] float speed;
     bool going = true;
     [SerializeField] GameObject polenPiece;
+    bool scared = false;
+    public BichosSpawner spawner;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class Bee : MonoBehaviour, IBicho
         {
             if (!going)
             {
-                Destroy(gameObject);
+                LeaveScreen(scared);
             }
             transform.position = targetPos;
             targetPos = initialPos;
@@ -50,10 +52,18 @@ public class Bee : MonoBehaviour, IBicho
         targetPos = initialPos;
         going = false;
         speed *= 3;
+        scared = true;
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
     {
         target = flowerTarget;
+        spawner = bichoSpawner;
+    }
+
+    public void LeaveScreen(bool scaredAway)
+    {
+        spawner.OnBichoLeftScreen(scaredAway, false);
+        Destroy(gameObject);
     }
 }

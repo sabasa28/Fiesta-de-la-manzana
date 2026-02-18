@@ -63,7 +63,6 @@ public class ConveyourApple : MonoBehaviour
                 GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(DestroyAfterThrow());
                 gfxTargetFollowsTouch = false;
-                Debug.Log("distance reached");
             }
         }
     }

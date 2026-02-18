@@ -20,12 +20,13 @@ public class Fly : MonoBehaviour, IBicho
     [SerializeField] GameObject applePiece;
     bool goingRight = true;
     [SerializeField] SpriteRenderer gfx;
+    bool scared = false;
+    public BichosSpawner spawner;
     private void Start()
     {
         targetPos = target.transform.position;
         initialPos = transform.position;
         transform.up = (targetPos - initialPos).normalized;
-        CheckTargetDirAndFlip();
     }
     void Update()
     {
@@ -50,7 +51,6 @@ public class Fly : MonoBehaviour, IBicho
                     transform.up = (targetPos - transform.position).normalized;
                     didFullRotation = true;
                     turning = false;
-                    CheckTargetDirAndFlip();
                 }
             }
         }
@@ -73,12 +73,11 @@ public class Fly : MonoBehaviour, IBicho
         {
             if (!going)
             {
-                Destroy(gameObject);
+                LeaveScreen(scared);
             }
             transform.position = targetPos;
             targetPos = initialPos;
             applePiece.SetActive(true);
-            CheckTargetDirAndFlip();
             turning = false;
             transform.up = (targetPos - transform.position).normalized;
             going = false;
@@ -91,22 +90,29 @@ public class Fly : MonoBehaviour, IBicho
         {
             return;
         }
+        scared = true;
         targetPos = initialPos;
         turning = false;
         didFullRotation = true;
         transform.up = (targetPos - transform.position).normalized;
         going = false;
         speed *= 3;
-        CheckTargetDirAndFlip();
     }
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform[] leafMidpoint, Transform[] leafTarget)
+    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
     {
         target = appleTarget;
+        spawner = bichoSpawner;
     }
 
     void CheckTargetDirAndFlip()
     {
         goingRight = targetPos.x > transform.position.x;
         gfx.flipY = !goingRight;
+    }
+
+    public void LeaveScreen(bool scaredAway)
+    {
+        spawner.OnBichoLeftScreen(scaredAway, true);
+        Destroy(gameObject);
     }
 }

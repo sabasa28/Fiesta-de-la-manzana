@@ -2126,7 +2126,7 @@ MonoBehaviour:
   startGameButton: {fileID: 1357306502}
   playAgainButton: {fileID: 1120184752}
   returnToMenuButton: {fileID: 1762313661}
-  instructionsText: "Le\xE9 las preguntas y eleg\xED la opcion correcta. Suerte!"
+  instructionsText: "Le\xE9 las preguntas y eleg\xED la opci\xF3n correcta. \\n\xA1Suerte!"
   menuButton: {fileID: 447831345}
   mascotAnimationController: {fileID: 370462799}
 --- !u!4 &643752564
@@ -3290,7 +3290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Selecciona la dificultad
+  m_text: "Seleccion\xE1 la dificultad"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
