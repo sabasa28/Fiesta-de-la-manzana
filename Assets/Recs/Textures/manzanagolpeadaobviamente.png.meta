@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 81d081bcdc51f544f98e8f3e146f52f9
+guid: 66bb01970ff46eb4895024e01f4e8d5f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5972744459735610091
-    second: ManzanaConGusanoLu_0
+      213: -7665262928666028401
+    second: manzanagolpeadaobviamente_0
   - first:
-      213: -4006630833631656250
-    second: ManzanaConGusanoLu_1
+      213: 4202166985349469468
+    second: manzanagolpeadaobviamente_1
   - first:
-      213: -7356623217958216759
-    second: ManzanaConGusanoLu_2
+      213: -6093967055448525495
+    second: manzanagolpeadaobviamente_2
   - first:
-      213: 7012829919559905311
-    second: ManzanaConGusanoLu_3
+      213: -2400974476123277882
+    second: manzanagolpeadaobviamente_3
   - first:
-      213: -2045787256400001268
-    second: ManzanaConGusanoLu_4
+      213: 4530873061348450225
+    second: manzanagolpeadaobviamente_4
   - first:
-      213: -3037556471650200965
-    second: ManzanaConGusanoLu_5
+      213: -8428512097831781890
+    second: manzanagolpeadaobviamente_5
   - first:
-      213: -9182993914143093691
-    second: ManzanaConGusanoLu_6
+      213: -4617042478305640365
+    second: manzanagolpeadaobviamente_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -131,7 +131,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_0
+      name: manzanagolpeadaobviamente_0
       rect:
         serializedVersion: 2
         x: 366
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 51dc64f0f8c8c1da0800000000000000
-      internalID: -5972744459735610091
+      spriteID: f8614ea8af38f9590800000000000000
+      internalID: -7665262928666028401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_1
+      name: manzanagolpeadaobviamente_1
       rect:
         serializedVersion: 2
         x: 445
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6c6024f1c769568c0800000000000000
-      internalID: -4006630833631656250
+      spriteID: c1511a0fb98115a30800000000000000
+      internalID: 4202166985349469468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_2
+      name: manzanagolpeadaobviamente_2
       rect:
         serializedVersion: 2
         x: 1768
@@ -190,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9cb953b092608e990800000000000000
-      internalID: -7356623217958216759
+      spriteID: 945be031041ed6ba0800000000000000
+      internalID: -6093967055448525495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_3
+      name: manzanagolpeadaobviamente_3
       rect:
         serializedVersion: 2
         x: 1819
@@ -212,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f10799108a3925160800000000000000
-      internalID: 7012829919559905311
+      spriteID: 6c574e35f660eaed0800000000000000
+      internalID: -2400974476123277882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_4
+      name: manzanagolpeadaobviamente_4
       rect:
         serializedVersion: 2
         x: 1534
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c07c1405457eb93e0800000000000000
-      internalID: -2045787256400001268
+      spriteID: 1bf9f003b05e0ee30800000000000000
+      internalID: 4530873061348450225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_5
+      name: manzanagolpeadaobviamente_5
       rect:
         serializedVersion: 2
         x: 975
@@ -256,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b72d9129b7e68d5d0800000000000000
-      internalID: -3037556471650200965
+      spriteID: ef977a737e8e70b80800000000000000
+      internalID: -8428512097831781890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ManzanaConGusanoLu_6
+      name: manzanagolpeadaobviamente_6
       rect:
         serializedVersion: 2
         x: 1196
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54c4dec40b37f8080800000000000000
-      internalID: -9182993914143093691
+      spriteID: 35004bff358fcefb0800000000000000
+      internalID: -4617042478305640365
       vertices: []
       indices: 
       edges: []
@@ -298,13 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ManzanaConGusanoLu_0: -5972744459735610091
-      ManzanaConGusanoLu_1: -4006630833631656250
-      ManzanaConGusanoLu_2: -7356623217958216759
-      ManzanaConGusanoLu_3: 7012829919559905311
-      ManzanaConGusanoLu_4: -2045787256400001268
-      ManzanaConGusanoLu_5: -3037556471650200965
-      ManzanaConGusanoLu_6: -9182993914143093691
+      manzanagolpeadaobviamente_0: -7665262928666028401
+      manzanagolpeadaobviamente_1: 4202166985349469468
+      manzanagolpeadaobviamente_2: -6093967055448525495
+      manzanagolpeadaobviamente_3: -2400974476123277882
+      manzanagolpeadaobviamente_4: 4530873061348450225
+      manzanagolpeadaobviamente_5: -8428512097831781890
+      manzanagolpeadaobviamente_6: -4617042478305640365
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

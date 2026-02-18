@@ -11,21 +11,21 @@ public class Bee : MonoBehaviour, IBicho
     [SerializeField] GameObject polenPiece;
     bool scared = false;
     public BichosSpawner spawner;
+    [SerializeField] SpriteRenderer gfx;
 
     private void Start()
     {
         targetPos = target.transform.position;
         initialPos = transform.position;
+        transform.up = (targetPos - transform.position);
+        CheckTargetDirAndFlip();
     }
     void Update()
     {
         float movement = speed * Time.deltaTime;
         Vector3 pathLeft = (targetPos - transform.position);
         transform.up = pathLeft.normalized;
-        if (transform.right.y < 0)
-        {
-            transform.Rotate(Vector3.up, 180, Space.Self);
-        }
+
         if (movement <= pathLeft.magnitude)
         {
             transform.position += transform.up * movement;
@@ -38,6 +38,7 @@ public class Bee : MonoBehaviour, IBicho
             }
             transform.position = targetPos;
             targetPos = initialPos;
+            CheckTargetDirAndFlip();
             polenPiece.SetActive(true);
             going = false;
             speed *= 3;
@@ -50,6 +51,7 @@ public class Bee : MonoBehaviour, IBicho
             return;
         }
         targetPos = initialPos;
+        CheckTargetDirAndFlip();
         going = false;
         speed *= 3;
         scared = true;
@@ -59,6 +61,11 @@ public class Bee : MonoBehaviour, IBicho
     {
         target = flowerTarget;
         spawner = bichoSpawner;
+    }
+
+    void CheckTargetDirAndFlip()
+    {
+        gfx.flipY = targetPos.x > transform.position.x;
     }
 
     public void LeaveScreen(bool scaredAway)

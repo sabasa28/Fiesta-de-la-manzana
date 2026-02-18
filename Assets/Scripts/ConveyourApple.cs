@@ -18,6 +18,7 @@ public class ConveyourApple : MonoBehaviour
     [SerializeField] float rotationSpeedWhenThrown;
     [SerializeField] int oneOutOfIsBadApple;
     [SerializeField] Sprite[] badApplePosibleSprites;
+    [SerializeField] Sprite shoeSprite;
     public bool isBadApple;
     public ConveyourBeltController conveyourBeltController;
     bool usingTouch = false;
@@ -27,7 +28,14 @@ public class ConveyourApple : MonoBehaviour
         isBadApple = Random.Range(0, oneOutOfIsBadApple) == 0; //not acab??
         if (isBadApple)
         {
-            graphicTarget.GetComponent<SpriteRenderer>().sprite = badApplePosibleSprites[Random.Range(0, badApplePosibleSprites.Length)]; 
+            if (Random.Range(0, 10) == 0)
+            {
+                graphicTarget.GetComponent<SpriteRenderer>().sprite = shoeSprite;
+            }
+            else
+            {
+                graphicTarget.GetComponent<SpriteRenderer>().sprite = badApplePosibleSprites[Random.Range(0, badApplePosibleSprites.Length)];            
+            }
         }
         maxDistanceToThrow = Vector3.Distance(Camera.main.WorldToScreenPoint(graphicTarget.GetComponent<SpriteRenderer>().bounds.min), Camera.main.WorldToScreenPoint(graphicTarget.GetComponent<SpriteRenderer>().bounds.center));
          //HACER BIEN ESTO

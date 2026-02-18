@@ -286,7 +286,9 @@ MonoBehaviour:
   oneOutOfIsBadApple: 2
   badApplePosibleSprites:
   - {fileID: 21300000, guid: 98503c922f2c68c439c172122e60e92c, type: 3}
-  - {fileID: 21300000, guid: f39ee7d4c75e8c84b9419c91479d0801, type: 3}
+  - {fileID: 21300000, guid: 66bb01970ff46eb4895024e01f4e8d5f, type: 3}
+  - {fileID: 21300000, guid: 81d081bcdc51f544f98e8f3e146f52f9, type: 3}
+  shoeSprite: {fileID: 21300000, guid: 4a343f8a24754dc4ba29e70071b9e254, type: 3}
   isBadApple: 0
   conveyourBeltController: {fileID: 0}
 --- !u!50 &9003396725889810795
