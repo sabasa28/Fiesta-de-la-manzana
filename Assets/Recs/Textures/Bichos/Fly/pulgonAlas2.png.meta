@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bc53c5be9f7ed3845b35e983371e1fbc
+guid: 3393f3eb0d4ea8f449c7d19afcd91e88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1239146050976583253
-    second: WhatsApp Image 2026-01-28 at 20.45.51_0
+      213: -6970851408604537641
+    second: pulgonAlas2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhatsApp Image 2026-01-28 at 20.45.51_0
+      name: pulgonAlas2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 238
-        width: 1200
-        height: 1362
+        x: 298
+        y: 508
+        width: 1395
+        height: 1348
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba176be5b3badcee0800000000000000
-      internalID: -1239146050976583253
+      spriteID: 7dc5818b39f824f90800000000000000
+      internalID: -6970851408604537641
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c4097b911105a9e4baeaa4a1a185104d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WhatsApp Image 2026-01-28 at 20.45.51_0: -1239146050976583253
+      pulgonAlas2_0: -6970851408604537641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10,6 +10,7 @@ public class BichosSpawner : MonoBehaviour
     [SerializeField] int maxTimeForSpawn;
     float sideAx;
     float sideBx;
+    [SerializeField] float maxDistToSides;
     float topsideY;
     float bottomSideY;
     [SerializeField] Transform topLeftCorner;
@@ -20,9 +21,13 @@ public class BichosSpawner : MonoBehaviour
     [SerializeField] float firstSpawnTime;
     [SerializeField] GameObject[] posibleFlyingSpawns;
     [SerializeField] GameObject[] posibleClimbingSpawns;
+    [SerializeField] GameObject larvaSpawn;
+    [SerializeField] Transform appleFirstPointTrans;
+    [SerializeField] Transform appleSecondPointTrans;
     [SerializeField] Transform appleTrans;
     [SerializeField] Transform flowerTrans;
     [SerializeField] Transform leafTrans;
+    [SerializeField] Transform eggLeafTrans;
     [SerializeField] Transform leafFirstPointTrans;
     [SerializeField] Transform leafSecondPointTrans;
     [SerializeField] Transform timerRepresentation;
@@ -92,7 +97,7 @@ public class BichosSpawner : MonoBehaviour
                 spawnOption -= posibleFlyingSpawns.Length;
                 spawnedBicho = Instantiate(posibleClimbingSpawns[spawnOption], climbingSpawnPos.position, Quaternion.identity).GetComponent<IBicho>();
             }
-            spawnedBicho.ReceiveObjective(appleTrans, flowerTrans, leafFirstPointTrans, leafSecondPointTrans, leafTrans, this);
+            spawnedBicho.ReceiveObjective(appleFirstPointTrans, appleSecondPointTrans, appleTrans, flowerTrans, leafFirstPointTrans, leafSecondPointTrans, leafTrans, eggLeafTrans, this);
         }
     }
 
@@ -102,20 +107,33 @@ public class BichosSpawner : MonoBehaviour
         Vector3 spawnPos = Vector3.zero; 
         switch (randomSide)
         {
-            case 0:
+            case 0: //Left
                 spawnPos.x = sideAx;
                 spawnPos.y = Random.Range(bottomSideY, topsideY);
                 break;
-            case 1:
+            case 1: //right
                 spawnPos.x = sideBx;
                 spawnPos.y = Random.Range(bottomSideY, topsideY);
                 break;
-            case 2:
-                spawnPos.x = Random.Range(sideAx, sideBx);
-                spawnPos.y = topsideY;
+            case 2: //bottom
+                if (Random.Range(0, 2) == 0)
+                {
+                    spawnPos.x = Random.Range(sideAx, sideAx + maxDistToSides);
+                }
+                else 
+                {
+                    spawnPos.x = Random.Range(sideBx - maxDistToSides, sideBx);
+                }
+                spawnPos.y = bottomSideY;
                 break;
         }
         return spawnPos;
+    }
+
+    public void SpawnLarva(Vector3 posToSpawn)
+    {
+         IBicho spawnedBicho = Instantiate(larvaSpawn, posToSpawn, Quaternion.identity).GetComponent<IBicho>();
+        spawnedBicho.ReceiveObjective(appleFirstPointTrans, appleSecondPointTrans, appleTrans, flowerTrans, leafFirstPointTrans, leafSecondPointTrans, leafTrans, eggLeafTrans, this);
     }
 
     void SetAndEnableStartScreen()

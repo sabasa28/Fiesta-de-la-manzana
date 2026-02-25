@@ -21,6 +21,7 @@ public class ConveyourBeltController : MonoBehaviour
     [SerializeField] float minDistanceBetweenApples;
     [SerializeField] Animator animController;
     [SerializeField] float speed;
+    float spawnSpeed;
     float initialSpeed;
     float spawnTimer = 0.0f;
     float speedRaiseTimer = 0.0f;
@@ -58,6 +59,8 @@ public class ConveyourBeltController : MonoBehaviour
     Touch touchDebug;
     [SerializeField] GameObject menuButton;
     bool buttonsEnabled = true;
+    [SerializeField] int timesSpedUp;
+    [SerializeField] int maxTimesToSpeedUp;
 
     private void Awake()
     {
@@ -89,6 +92,7 @@ public class ConveyourBeltController : MonoBehaviour
     }
     private void Start()
     {
+        spawnSpeed = speed;
         ChangeMenuButtonState(true);
         mascotInitialScale = mascot.transform.localScale;
         mascotInitialPos = mascot.transform.position;
@@ -109,7 +113,7 @@ public class ConveyourBeltController : MonoBehaviour
         if (spawnTimer > nextSpawnTime)
         {
             SpawnApple();
-            nextSpawnTime = Random.Range(minNextSpawn, maxNextSpawn) / speed;
+            nextSpawnTime = Random.Range(minNextSpawn, maxNextSpawn) / spawnSpeed;
             spawnTimer = 0.0f;
         }
         else
@@ -128,8 +132,16 @@ public class ConveyourBeltController : MonoBehaviour
         {
             if (speedRaiseTimer > timeBetweenSpeedRaising)
             {
-                ChangeSpeed(speed * speedRaiseMultiplier);
                 speedRaiseTimer = 0.0f;
+                if (timesSpedUp < maxTimesToSpeedUp)
+                {
+                    ChangeSpeed(speed * speedRaiseMultiplier);
+                    timesSpedUp++;
+                }
+                else
+                {
+                    spawnSpeed *= speedRaiseMultiplier;
+                }
             }
         }
     }
@@ -155,6 +167,7 @@ public class ConveyourBeltController : MonoBehaviour
     void ChangeSpeed(float newSpeed)
     { 
         speed = newSpeed;
+        spawnSpeed = newSpeed;
         animController.SetFloat("ConveyourSpeed", speed);
         foreach (ConveyourApple apple in spawnedApples)
         {
@@ -290,6 +303,7 @@ public class ConveyourBeltController : MonoBehaviour
         applesSaved = 0;
         spawnTimer = 0.0f;
         speedRaiseTimer = 0.0f;
+        timesSpedUp = 0;
         raisingSpeed = false;
         ChangeSpeed(initialSpeed);
         StartGame();

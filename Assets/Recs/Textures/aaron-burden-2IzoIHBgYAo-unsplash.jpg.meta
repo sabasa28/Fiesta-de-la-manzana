@@ -116,12 +116,12 @@ TextureImporter:
       name: aaron-burden-2IzoIHBgYAo-unsplash_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3024
-        height: 4032
+        x: 308
+        y: 754
+        width: 2400
+        height: 2724
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 28ddb185e13c5e34496996ef394c0bb8
     internalID: 0
     vertices: []
     indices: 

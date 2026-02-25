@@ -24,6 +24,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - text: Controla el ingreso de fruta a la Patagonia en las barreras sanitarias
     sprite: {fileID: 0}
-  - text: Habilita el comercio de fruta y verdura en verdulerias
+  - text: "Habilita el comercio de fruta y verdura en verduler\xEDas"
     sprite: {fileID: 0}
   correctOption: 0

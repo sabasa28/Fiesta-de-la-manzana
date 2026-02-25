@@ -17,7 +17,7 @@ MonoBehaviour:
   options:
   - text: Un laboratorio de suelo y agua
     sprite: {fileID: 0}
-  - text: "Un insectario de ben\xE9ficos"
+  - text: "Una biof\xE1brica"
     sprite: {fileID: 0}
   - text: "Un banco de germoplasma de pom\xE1ceas"
     sprite: {fileID: 0}

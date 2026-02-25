@@ -12,9 +12,14 @@ public class Bee : MonoBehaviour, IBicho
     bool scared = false;
     public BichosSpawner spawner;
     [SerializeField] SpriteRenderer gfx;
+    Vector3 polenOrigScale;
+    Vector3 polenInverseScale;
 
     private void Start()
     {
+        polenOrigScale = polenPiece.transform.localScale;
+        polenInverseScale = polenOrigScale;
+        polenInverseScale.y = -polenInverseScale.y;
         targetPos = target.transform.position;
         initialPos = transform.position;
         transform.up = (targetPos - transform.position);
@@ -57,7 +62,7 @@ public class Bee : MonoBehaviour, IBicho
         scared = true;
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
+    public void ReceiveObjective(Transform appleFirstPoint, Transform appleSecondPoint, Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, Transform eggLeafTarget, BichosSpawner bichoSpawner)
     {
         target = flowerTarget;
         spawner = bichoSpawner;
@@ -66,6 +71,7 @@ public class Bee : MonoBehaviour, IBicho
     void CheckTargetDirAndFlip()
     {
         gfx.flipY = targetPos.x > transform.position.x;
+        polenPiece.transform.localScale = targetPos.x > transform.position.x ? polenInverseScale : polenOrigScale;
     }
 
     public void LeaveScreen(bool scaredAway)

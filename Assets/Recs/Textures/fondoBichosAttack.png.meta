@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bc53c5be9f7ed3845b35e983371e1fbc
+guid: fa37957dd92829440b7111af725438f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1239146050976583253
-    second: WhatsApp Image 2026-01-28 at 20.45.51_0
+      213: 7747484700180181908
+    second: fondoBichosAttack_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhatsApp Image 2026-01-28 at 20.45.51_0
+      name: fondoBichosAttack_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 238
-        width: 1200
-        height: 1362
+        y: 0
+        width: 2266
+        height: 1488
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba176be5b3badcee0800000000000000
-      internalID: -1239146050976583253
+      spriteID: 49373017948948b60800000000000000
+      internalID: 7747484700180181908
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c4097b911105a9e4baeaa4a1a185104d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WhatsApp Image 2026-01-28 at 20.45.51_0: -1239146050976583253
+      fondoBichosAttack_0: 7747484700180181908
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

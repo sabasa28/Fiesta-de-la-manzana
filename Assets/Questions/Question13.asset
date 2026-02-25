@@ -18,10 +18,10 @@ MonoBehaviour:
   options:
   - text: 603
     sprite: {fileID: 0}
-  - text: 1491
+  - text: 1.491
     sprite: {fileID: 0}
-  - text: 3018
+  - text: 3.018
     sprite: {fileID: 0}
-  - text: 10114
+  - text: 10.114
     sprite: {fileID: 0}
   correctOption: 1

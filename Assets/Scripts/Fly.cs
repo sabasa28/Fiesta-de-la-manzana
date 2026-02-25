@@ -98,7 +98,7 @@ public class Fly : MonoBehaviour, IBicho
         going = false;
         speed *= 3;
     }
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
+    public void ReceiveObjective(Transform appleFirstPoint, Transform appleSecondPoint, Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, Transform eggLeafTarget, BichosSpawner bichoSpawner)
     {
         target = appleTarget;
         spawner = bichoSpawner;

@@ -116,12 +116,12 @@ TextureImporter:
       name: WhatsApp Image 2026-01-28 at 21.07.42_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 543
         y: 0
-        width: 1600
+        width: 1057
         height: 1200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1d234e5023224ae4bb3ed914d42f1665
     internalID: 0
     vertices: []
     indices: 

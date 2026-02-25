@@ -38,9 +38,9 @@ public class QnAController : MonoBehaviour
     [SerializeField] GameObject playAgainButton;
     [SerializeField] GameObject returnToMenuButton;
     [SerializeField] string instructionsText;
-    int maxPointsPerQuestion = 4;
-    int pointsThisQuestion = 4;
-    int totalPoints = 0;
+    //int maxPointsPerQuestion = 4;
+    //int pointsThisQuestion = 4;
+    //int totalPoints = 0;
     int questionsCorrect = 0;
     bool changingQuestion = false;
     [SerializeField] GameObject menuButton;
@@ -73,8 +73,8 @@ public class QnAController : MonoBehaviour
             questionsData.Add(question);
         }
         currentCuestionIndex = 0;
-        pointsThisQuestion = 4;
-        totalPoints = 0;
+        //pointsThisQuestion = 4;
+        //totalPoints = 0;
         questionsCorrect = 0;
         questionsOrder.Clear();
         for (int i = 0; i < questionsData.Count; i++)
@@ -143,7 +143,7 @@ public class QnAController : MonoBehaviour
                 optionsSprite[i].gameObject.SetActive(false);
             }
         }
-        pointsThisQuestion = 4;
+        //pointsThisQuestion = 4;
     }
 
     public void SelectOptionA()

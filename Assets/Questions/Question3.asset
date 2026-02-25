@@ -18,8 +18,7 @@ MonoBehaviour:
   options:
   - text: "Aporta prote\xEDnas"
     sprite: {fileID: 0}
-  - text: "Protege de enfermedades cr\xF3nicas no transmisibles (c\xF3mo cancer y
-      enfermedades cardiovasculares)"
+  - text: Aporta fibra, vitaminas, antioxidantes y agua
     sprite: {fileID: 0}
   - text: Aporta grasas saludables
     sprite: {fileID: 0}

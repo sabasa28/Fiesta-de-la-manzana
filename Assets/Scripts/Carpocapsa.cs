@@ -7,7 +7,7 @@ public class Carpocapsa : MonoBehaviour, IBicho
     Vector3 initialPos;
     [SerializeField] float speed;
     bool going = true;
-    [SerializeField] GameObject applePiece;
+    [SerializeField] GameObject egg;
     bool scared = false;
     public BichosSpawner spawner;
     [SerializeField] Transform gfxSprite;
@@ -36,10 +36,14 @@ public class Carpocapsa : MonoBehaviour, IBicho
             {
                 LeaveScreen(scared);
             }
+            else
+            {
+                spawner.SpawnLarva(transform.position);
+            }
             transform.position = targetPos;
             targetPos = initialPos;
             gfxSprite.localScale = targetPos.x < transform.position.x ? originalGFXScale : reversedGFXScale;
-            applePiece.SetActive(true);
+            egg.SetActive(false);
             going = false;
             speed *= 3;
         }
@@ -57,9 +61,9 @@ public class Carpocapsa : MonoBehaviour, IBicho
         scared = true;
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
+    public void ReceiveObjective(Transform appleFirstPoint, Transform appleSecondPoint, Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, Transform eggLeafTarget, BichosSpawner bichoSpawner)
     {
-        target = appleTarget;
+        target = eggLeafTarget;
         spawner = bichoSpawner;
     }
 

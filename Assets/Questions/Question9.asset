@@ -16,11 +16,11 @@ MonoBehaviour:
     Agropecuaria \u2013 INTA?"
   questionImage: {fileID: 0}
   options:
-  - text: "Solo en la provincia de R\xEDo Negro"
+  - text: "En la provincia de R\xEDo Negro"
     sprite: {fileID: 0}
-  - text: "Solo en las provincias de R\xEDo Negro y Neuqu\xE9n"
+  - text: "En las provincias de R\xEDo Negro y Neuqu\xE9n"
     sprite: {fileID: 0}
-  - text: Solo en la Patagonia
+  - text: En la Patagonia
     sprite: {fileID: 0}
   - text: En todas las provincias de Argentina
     sprite: {fileID: 0}

@@ -64,7 +64,7 @@ public class Butterfly : MonoBehaviour, IBicho
         gfxSprite.flipX = targetPos.x > transform.position.x;
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
+    public void ReceiveObjective(Transform appleFirstPoint, Transform appleSecondPoint, Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, Transform eggLeafTarget, BichosSpawner bichoSpawner)
     {
         spawner = bichoSpawner;
     }

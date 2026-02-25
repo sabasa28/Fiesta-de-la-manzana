@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MascotAnimationController : MonoBehaviour
@@ -14,7 +15,7 @@ public class MascotAnimationController : MonoBehaviour
         ClosedEyesHappyHand
     }
 
-    [SerializeField] MascotAnimations initialAnimation; 
+    public MascotAnimations initialAnimation; 
     void Start()
     {
         animator = GetComponent<Animator>();    

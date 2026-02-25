@@ -54,7 +54,6 @@ public class Ant : MonoBehaviour, IBicho
                         currentPosInPath = PosInPath.SecondPointAndLeaf;
                         break;
                     case PosInPath.SecondPointAndLeaf:
-                        targetPos = secondPoint.position;
                         going = false;
                         speed *= 3;
                         animator.SetFloat("Speed", speed);
@@ -107,7 +106,7 @@ public class Ant : MonoBehaviour, IBicho
         }
     }
 
-    public void ReceiveObjective(Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, BichosSpawner bichoSpawner)
+    public void ReceiveObjective(Transform appleFirstPoint, Transform appleSecondPoint, Transform appleTarget, Transform flowerTarget, Transform leafFirstPoint, Transform leafSecondpoint, Transform leafTarget, Transform eggLeafTarget, BichosSpawner bichoSpawner)
     {
         firstPoint = leafFirstPoint;
         secondPoint = leafSecondpoint;
